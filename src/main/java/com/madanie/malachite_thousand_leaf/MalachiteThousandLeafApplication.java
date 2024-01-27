@@ -1,19 +1,49 @@
 package com.madanie.malachite_thousand_leaf;
-import com.opencsv.bean.CsvToBeanBuilder;
 
-import java.io.FileReader;
-import java.util.List;
-
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
    public static ProspectHandler propects;
+
    public static void main(String[] args) {
-      String file = "prospects.txt";
+      CommandLine cmd = getArgs(args);
+      String file = cmd.getOptionValue("i", "prospects.txt");
+      boolean webui = cmd.hasOption("w");
+
       propects = new ProspectHandler().load(file);
       propects.print(true);
-      SpringApplication.run(MalachiteThousandLeafApplication.class, args);
+      if(webui)SpringApplication.run(MalachiteThousandLeafApplication.class, args);
    }
+
+   private static CommandLine getArgs(String[] args){
+      CommandLineParser parser = new DefaultParser();
+      Options options = new Options();
+      options.addOption("i", "input", true, "Input file (default: prospects.txt)");
+      options.addOption("w", "web", false, "Enable web UI");
+      options.addOption("h", "help", false, "Print help message");
+      try {
+         CommandLine cmd = parser.parse(options, args);
+         if (cmd.hasOption("h")) {
+            HelpFormatter formatter= new HelpFormatter();
+            formatter.printHelp("MalachiteThousandLeafApplication", options);
+            System.exit(0);
+         }
+         return cmd;
+      } catch (Exception e) {
+         System.err.println("Error parsing command line arguments: " + e.getMessage());
+         System.exit(1);
+         return null;
+      }
+   }
+
+
 }
