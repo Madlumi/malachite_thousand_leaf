@@ -24,6 +24,10 @@
          <input type="number" id="years" name="years" required />
 
          <button type="submit">Add Prospect</button>
+         
+         <div th:if="${param.error ne null}" class="error-box">
+            <p class="error-text">Invalid input. Please check your values.</p>
+         </div>
 
 
       <ol class="striped-list">

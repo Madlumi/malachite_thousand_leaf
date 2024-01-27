@@ -10,9 +10,13 @@ public class ProspectHandler{
    public List<Prospect> prospects= new ArrayList<Prospect>();
    public List<Prospect> getProspectList(){return prospects;}
 
+   public void addProspect(Prospect p){
+      prospects.add(p);
+   }
    public ProspectHandler load(String file){
       try {
          List<Prospect> p = new CsvToBeanBuilder(new FileReader(file)).withType(Prospect.class).withThrowExceptions(false).build().parse();
+         for(Prospect pr : p){pr.setId();}
          prospects.addAll(p);
       } catch (Exception e){e.printStackTrace();}
       return this;

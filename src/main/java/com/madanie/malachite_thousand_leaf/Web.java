@@ -26,12 +26,23 @@ public class Web {
    }
 
 
-      @PostMapping("/mortage")
+   @PostMapping("/mortage")
    public String mcp(@RequestParam(value = "customer") String customer,
-                     @RequestParam(value = "total") String total,
-                     @RequestParam(value = "interest") String interest,
-                     @RequestParam(value = "years") int years
-                     ) {
+         @RequestParam(value = "total") String total,
+         @RequestParam(value = "interest") String interest,
+         @RequestParam(value = "years") int years,
+         Model model){
+      try {
+         Prospect p = new Prospect();
+         p.setCustomer(customer);
+         p.setTotalLoan(Double.parseDouble(total));
+         p.setInterest(Double.parseDouble(interest));
+         p.setYears(years);
+         MalachiteThousandLeafApplication.propects.addProspect(p);
+      } catch (Exception e) {
+         e.printStackTrace();
+         return "redirect:/mortage?error=true";
+      }
       return "redirect:/mortage";
    }
 }

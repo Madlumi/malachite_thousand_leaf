@@ -14,3 +14,14 @@ ol.striped-list > li:last-child {
     border-bottom: none;
 }
 
+.error-box {
+    border: 1px solid #FF0000;
+    padding: 10px;
+    background-color: #FFEEEE;
+    color: #FF0000;
+    margin-top: 10px;  /* Optional: Adjust the margin as needed */
+}
+
+.error-text {
+    margin: 0;  /* Optional: Remove default margins on <p> tag */
+}

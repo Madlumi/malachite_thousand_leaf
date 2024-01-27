@@ -3,8 +3,18 @@ package com.madanie.malachite_thousand_leaf;
 import com.opencsv.bean.CsvBindByName;
 
 public class Prospect {
-   public Prospect(){}
 
+   //global id system, makes all the id's unique.
+   //Moving the id handling to the handler class would allow unique for handler only id
+   private static Long nextID=1L;
+   private long id=0L;
+   public Long getId(){return id;}
+   public void setId(){
+      if(id==0){
+         id=nextID;
+         nextID++;
+      }
+   }
    @CsvBindByName(column = "Customer")
    private String customer;
    public void   setCustomer(String customer){this.customer = customer;}
@@ -23,19 +33,24 @@ public class Prospect {
    public void   setYears(double years){this.years = years;}
    public double getYears(){return years;}
 
+   public Prospect(){}
+
    private double monthly;
    public double getMonthly(){
       monthly=calcPayment(12);
       return monthly;
    }
 
-
+   private String dropZeroDecimal(double number){
+      return ((number - (int)number)* (number - (int)number)< .001) ? String.format("%.0f", number) : String.format("%.2f", number);
+   }
    @Override
    public String toString(){
-      return String.format("Prospect: %s wants to borrow %.2f € for a period of %.2f years and pay %.2f € each month",
-            getCustomer(), getTotalLoan(), getYears(), getMonthly());
+      if(id==0)setId();//ensure id is set
+      return String.format("Prospect %d: %s wants to borrow %s € for a period of %s years and pay %s € each month", 
+            getId(), getCustomer(), dropZeroDecimal(getTotalLoan()), dropZeroDecimal(getYears()), dropZeroDecimal(getMonthly()));
    }
-   
+
    private double calcPayment(int paymentsPerYear){
       double b = (getInterest() / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
       double U = getTotalLoan();                               // U = Total loan
