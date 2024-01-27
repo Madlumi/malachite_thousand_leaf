@@ -4,10 +4,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class ProspectHandlerTest {
 
+
+   private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+   private final ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+   private final PrintStream origOut = System.out;
+   private final PrintStream origErr= System.err;
+
+   @BeforeEach
+   public void setUpStreams() {
+      System.setOut(new PrintStream(outStream));
+      System.setErr(new PrintStream(errStream));
+   }
+
+   @AfterEach
+   public void restoreStreams() {
+      System.setOut(origOut);
+      System.setErr(origErr);
+   }
    @Test
    public void testLoadEmptyFile(){
       ProspectHandler prospectHandler = new ProspectHandler();
