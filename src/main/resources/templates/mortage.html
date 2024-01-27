@@ -4,32 +4,36 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="style.css">
-      <title>Simple HTML Form</title>
+      <title>Malachite Thousand Leaf</title>
    </head>
    <body>
 
-      <h2>Mortage Calculator</h2>
-
+      <h1>Mortage Calculator</h1>
       <form th:action="@{/mortage}" method="post">
          <label for="customer">Customer:</label>
-         <input type="text" id="customer" name="customer" required />
+         <input style="width: 15em;" type="text" id="customer" name="customer" required />
 
          <label for="total">Total:</label>
-         <input type="text" id="total" name="total" required />
+         <input style="width: 6em;" type="text" id="total" name="total" required />
 
-         <label for="interest">Interest:</label>
-         <input type="text" id="interest" name="interest" required />
+         <label for="interest">Interest(yr):</label>
+         <input style="width: 3em;" type="text" id="interest" name="interest" required />
+         <label >%</label>
 
          <label for="years">Years:</label>
-         <input type="number" id="years" name="years" required />
+         <input style="width: 4em;"type="number" id="years" name="years" required />
 
-         <button type="submit">Add Prospect</button>
-         
-         <div th:if="${param.error ne null}" class="error-box">
-            <p class="error-text">Invalid input. Please check your values.</p>
-         </div>
+         <button  type="submit">Add Prospect</button>
+      </form>
 
+      <div th:if="${param.error ne null}" class="error-box">
+         <p class="error-text">Invalid input. Please check your values.</p>
+      </div>
 
+      <div th:if="${param.error eq null}" class="error-box-empty">
+         <p> </p>
+      </div>
+      <hr>
       <ol class="striped-list">
          <li th:each="prospectString : ${prospects}" th:text="${prospectString}"></li>
       </ol>

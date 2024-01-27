@@ -22,6 +22,16 @@ ol.striped-list > li:last-child {
     margin-top: 10px;  /* Optional: Adjust the margin as needed */
 }
 
+.error-box-empty {
+    color: #00fff0;
+    padding: 10px;
+    background-color: #EEFFFE;
+    color: #00fff0;
+    margin-top: 10px;  /* Optional: Adjust the margin as needed */
+}
 .error-text {
     margin: 0;  /* Optional: Remove default margins on <p> tag */
 }
+ .input{
+    size=1;
+ }
