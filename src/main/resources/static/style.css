@@ -1,0 +1,16 @@
+ol.striped-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ol.striped-list > li {
+    border-bottom: 1px solid rgb(221,221,221);
+    padding: 6px;
+}
+ol.striped-list > li:nth-of-type(odd) {
+    background-color: #e9e9f9 ;
+}
+ol.striped-list > li:last-child {
+    border-bottom: none;
+}
+
