@@ -12,9 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
+
    public static ProspectHandler propects;
 
    public static void main(String[] args) {
+
       CommandLine cmd = getArgs(args);
       String file = cmd.getOptionValue("i", "prospects.txt");
       boolean webui = cmd.hasOption("w");

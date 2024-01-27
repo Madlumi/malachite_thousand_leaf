@@ -55,17 +55,9 @@ public class Prospect {
       double b = (getInterest() / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
       double U = getTotalLoan();                               // U = Total loan
       int p    = (int)(getYears() * paymentsPerYear);             // p = Number of payments
-      double E = U * (b*pow((1 + b),p)) / (pow(( 1 + b),p)-1); //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
+      double E = U * (b*Maths.pow((1 + b),p)) / (Maths.pow(( 1 + b),p)-1); //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
       return E;                                                // E = Fixed monthly payment
    }
 
-   //TODO move to own class
-   public static double pow(double base,  int factor){
-      double result = 1;
-      for (int i = 0; i<factor; i++){
-         result *= base;
-      }
-      return result;
-   }
 
 }
