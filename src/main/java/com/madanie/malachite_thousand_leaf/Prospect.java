@@ -13,6 +13,7 @@ public class Prospect {
    private double totalLoan;
    public void   setTotalLoan(double totalLoan){this.totalLoan = totalLoan;}
    public double getTotalLoan(){return totalLoan;}
+   //yearly, in percent
    @CsvBindByName(column = "Interest")
    private double interest;
    public void   setInterest(double interest){this.interest = interest;}
@@ -24,7 +25,7 @@ public class Prospect {
 
    private double monthly;
    public double getMonthly(){
-      monthly=calcMonthlyPayment();
+      monthly=calcPayment(12);
       return monthly;
    }
 
@@ -34,18 +35,13 @@ public class Prospect {
       return String.format("Prospect: %s wants to borrow %.2f € for a period of %.2f years and pay %.2f € each month",
             getCustomer(), getTotalLoan(), getYears(), getMonthly());
    }
-   //in case of expansion should be rewrtiten to pass in payments 
-   private double calcMonthlyPayment(){
-      // b = Interest on a monthly basis
-      double b  = getInterest() / 12.0 / 100.0 ;
-      // U = Total loan
-      double U = getTotalLoan();
-      // p = Number of payments
-      int p = (int)(getYears() * 12); 
-      // E = Fixed monthly payment
-      // E=U[b(1 + b)^p]/[(1 + b)^p - 1]
-      double E = U * (b*pow((1 + b),p)) / (pow(( 1 + b),p)   - 1);
-      return E;
+   
+   private double calcPayment(int paymentsPerYear){
+      double b = (getInterest() / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
+      double U = getTotalLoan();                               // U = Total loan
+      int p    = (int)(getYears() * paymentsPerYear);             // p = Number of payments
+      double E = U * (b*pow((1 + b),p)) / (pow(( 1 + b),p)-1); //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
+      return E;                                                // E = Fixed monthly payment
    }
 
    //TODO move to own class
