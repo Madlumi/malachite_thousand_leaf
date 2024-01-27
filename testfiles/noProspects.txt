@@ -1,0 +1,12 @@
+Customer,Total loan,Interest,Years
+
+
+
+
+
+
+
+
+
+
+.

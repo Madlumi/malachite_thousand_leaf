@@ -3,18 +3,9 @@ package com.madanie.malachite_thousand_leaf;
 import com.opencsv.bean.CsvBindByName;
 
 public class Prospect {
-
-   //global id system, makes all the id's unique.
-   //Moving the id handling to the handler class would allow unique for handler only id
-   private static Long nextID=1L;
    private long id=0L;
    public Long getId(){return id;}
-   public void setId(){
-      if(id==0){
-         id=nextID;
-         nextID++;
-      }
-   }
+   public void setId(long i){id=i;}
    @CsvBindByName(column = "Customer")
    private String customer;
    public void   setCustomer(String customer){this.customer = customer;}
@@ -46,7 +37,6 @@ public class Prospect {
    }
    @Override
    public String toString(){
-      if(id==0)setId();//ensure id is set
       return String.format("Prospect %d: %s wants to borrow %s € for a period of %s years and pay %s € each month", 
             getId(), getCustomer(), dropZeroDecimal(getTotalLoan()), dropZeroDecimal(getYears()), dropZeroDecimal(getMonthly()));
    }

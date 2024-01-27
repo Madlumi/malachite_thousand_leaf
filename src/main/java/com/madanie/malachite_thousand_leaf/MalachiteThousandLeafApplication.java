@@ -5,7 +5,6 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,17 +12,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
 
-   public static ProspectHandler propects;
-
    public static void main(String[] args) {
-
       CommandLine cmd = getArgs(args);
-      String file = cmd.getOptionValue("i", "prospects.txt");
-      boolean webui = cmd.hasOption("w");
+      init(cmd.getOptionValue("i", "prospects.txt"));
+      if(cmd.hasOption("w"))SpringApplication.run(MalachiteThousandLeafApplication.class, args);
+   }
 
+   public static ProspectHandler propects;
+   
+   public static void init(String file){
       propects = new ProspectHandler().load(file);
       propects.print(true);
-      if(webui)SpringApplication.run(MalachiteThousandLeafApplication.class, args);
    }
 
    private static CommandLine getArgs(String[] args){
@@ -46,6 +45,4 @@ public class MalachiteThousandLeafApplication {
          return null;
       }
    }
-
-
 }
