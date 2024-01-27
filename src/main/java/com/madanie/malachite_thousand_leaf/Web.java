@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Web {
 
-   @GetMapping("/")
-   public String home(){
-      return "index";
-   }
    @GetMapping("/mortage")
    public String mc(Model model){
       List<String> prospectStrings = new ArrayList<>();
@@ -40,7 +36,7 @@ public class Web {
          p.setYears(years);
          MalachiteThousandLeafApplication.propects.addProspect(p);
       } catch (Exception e) {
-         e.printStackTrace();
+         //e.printStackTrace();
          return "redirect:/mortage?error=true";
       }
       return "redirect:/mortage";

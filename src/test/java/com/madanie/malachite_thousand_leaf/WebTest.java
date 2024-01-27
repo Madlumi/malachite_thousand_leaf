@@ -50,12 +50,6 @@ public class WebTest {
       MalachiteThousandLeafApplication.init("prospects.txt");
    }
 
-   @Test
-   public void testHomeEndpoint() throws Exception {
-      mockMvc.perform(get("/"))
-         .andExpect(status().isOk())
-         .andExpect(view().name("index"));
-   }
 
    @Test
    public void testMortgageEndpoint() throws Exception {

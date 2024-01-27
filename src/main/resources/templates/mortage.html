@@ -3,41 +3,72 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="Look.css">
       <link rel="stylesheet" href="style.css">
       <title>Malachite Thousand Leaf</title>
    </head>
    <body>
 
-      <h1>Mortage Calculator</h1>
-      <form th:action="@{/mortage}" method="post">
-         <label for="customer">Customer:</label>
-         <input style="width: 15em;" type="text" id="customer" name="customer" required />
 
-         <label for="total">Total:</label>
-         <input style="width: 6em;" type="text" id="total" name="total" required />
+      <div class="bg unselectable">
+         <table id="st" class="stars"style="color:Yellow;">
+            <th>*</th>
+            <script>
+var tbodyRef = document.getElementById('st').getElementsByTagName('tbody')[0];
+for (let y = 0; y < 040; y++){
+   var newRow = tbodyRef.insertRow();
+   for (let x = 0; x < 100; x++){
+      newRow.style.backgroundColor = "#"+((parseInt(y*.15)).toString(16).padStart(2, '0'))+"00"+ ((parseInt(y*.2)).toString(16).padStart(2, '0'));
+      var newCell = newRow.insertCell();
+      if(Math.random() < 0.007){
+         var newText = document.createTextNode('*');
+      }else if(Math.random() < 0.007){
+         var newText = document.createTextNode('+');
+      }else{
 
-         <label for="interest">Interest(yr):</label>
-         <input style="width: 3em;" type="text" id="interest" name="interest" required />
-         <label >%</label>
-
-         <label for="years">Years:</label>
-         <input style="width: 4em;"type="number" id="years" name="years" required />
-
-         <button  type="submit">Add Prospect</button>
-      </form>
-
-      <div th:if="${param.error ne null}" class="error-box">
-         <p class="error-text">Invalid input. Please check your values.</p>
+         var newText = document.createTextNode(' ');
+      }
+      newCell.appendChild(newText);
+   }
+}
+            </script>
+         </table>
       </div>
 
-      <div th:if="${param.error eq null}" class="error-box-empty">
-         <p> </p>
-      </div>
-      <hr>
-      <ol class="striped-list">
-         <li th:each="prospectString : ${prospects}" th:text="${prospectString}"></li>
-      </ol>
+      <div class="main-box">
 
+
+
+         <h1>Mortage Calculator</h1>
+         <hr style="color:var(--border-col);">
+         <form th:action="@{/mortage}" method="post">
+            <label for="customer">Name:</label>
+            <input style="width: 8em;" type="text" id="customer" name="customer" required />
+
+            <label for="total">Total:</label>
+            <input style="width: 4em;" type="text" id="total" name="total" required />
+
+            <label for="interest">Interest(%yr):</label>
+            <input style="width: 2em;" type="text" id="interest" name="interest" required />
+
+            <label for="years">Years:</label>
+            <input style="width: 4em;"type="number" id="years" name="years" required />
+            <br>
+            <button  type="submit"><b>Add Prospect</b></button>
+         </form>
+
+         <div th:if="${param.error ne null}" class="error-box">
+            <p>Invalid input. Please check your values.</p>
+         </div>
+         
+         <div th:if="${param.error eq null}" class="error-box-empty">
+            <p style="color: var(--content-bg-col2);;"> - </p>
+         </div>
+         <hr style="color:var(--border-col);">
+         <ol reversed type="1" class="striped-list">
+            <li th:each="prospectString : ${prospects}" th:text="${prospectString}"></li>
+         </ol>
+      </div>
 
 
    </body>
