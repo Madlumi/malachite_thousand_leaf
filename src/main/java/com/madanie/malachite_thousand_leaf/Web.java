@@ -18,8 +18,8 @@ public class Web {
    @GetMapping("/mortage")
    public String mc(Model model){
       List<String> prospectStrings = new ArrayList<>();
-      for(int i = 0; i < 100; i++){
-         prospectStrings.add("test:");
+      for(Prospect p : MalachiteThousandLeafApplication.propects.getProspectList()){
+         prospectStrings.add(p.toString());
       }
       model.addAttribute("prospects", prospectStrings);
       return "mortage";
