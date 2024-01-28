@@ -15,8 +15,9 @@ public class Web {
 
    @Autowired
    private ProspectRepo pr;
+
    @GetMapping("/mortage")
-   public String mc(Model model ){
+   public String mortageCtr(Model model ){
       List<String> pstr = new ArrayList<>();
       pr.findAll().forEach(p -> {
          pstr.add(p.toString());
@@ -27,13 +28,10 @@ public class Web {
 
 
    @PostMapping("/mortage")
-   public String mcp(
-@RequestParam Map<String,String> m, Model model) { 
+   public String mortagePostCtr(@RequestParam Map<String,String> m, Model model) { 
       try {
          Prospect p = Prospect.prospectFromMap(m);
          if (p!=null)pr.save(p);
-         System.out.println(m);
-         //pr.save(new Prospect(customer,Double.parseDouble(total),Double.parseDouble(interest),years ));
       } catch (Exception e) {
          return "redirect:/mortage?error=true";
       }

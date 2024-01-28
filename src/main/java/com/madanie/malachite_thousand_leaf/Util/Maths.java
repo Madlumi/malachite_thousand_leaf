@@ -1,5 +1,6 @@
-package com.madanie.malachite_thousand_leaf;
-public class Maths{
+package com.madanie.malachite_thousand_leaf.Util;
+
+public class Maths {
    //Does not handle negative numbers
    public static double pow(double base,  int factor){
       if(factor<0){return 0;}
