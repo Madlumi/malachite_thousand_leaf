@@ -1,6 +1,7 @@
 package com.madanie.malachite_thousand_leaf;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +27,13 @@ public class Web {
 
 
    @PostMapping("/mortage")
-   public String mcp(@RequestParam(value = "customer") String customer,
-         @RequestParam(value = "total") String total,
-         @RequestParam(value = "interest") String interest,
-         @RequestParam(value = "years") int years,
-         Model model){
+   public String mcp(
+@RequestParam Map<String,String> m, Model model) { 
       try {
-         pr.save(new Prospect(customer,Double.parseDouble(total),Double.parseDouble(interest),years ));
+         Prospect p = Prospect.prospectFromMap(m);
+         if (p!=null)pr.save(p);
+         System.out.println(m);
+         //pr.save(new Prospect(customer,Double.parseDouble(total),Double.parseDouble(interest),years ));
       } catch (Exception e) {
          return "redirect:/mortage?error=true";
       }

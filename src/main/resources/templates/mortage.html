@@ -43,16 +43,16 @@ for (let y = 0; y < 040; y++){
          <hr style="color:var(--border-col);">
          <form th:action="@{/mortage}" method="post">
             <label for="customer">Name:</label>
-            <input style="width: 8em;" type="text" id="customer" name="customer" required />
+            <input style="width: 8em;" type="text" id="customer" name="Customer" required />
 
             <label for="total">Total:</label>
-            <input style="width: 4em;" type="text" id="total" name="total" required />
+            <input style="width: 4em;" type="text" id="total" name="Total loan" required />
 
             <label for="interest">Interest(%yr):</label>
-            <input style="width: 2em;" type="text" id="interest" name="interest" required />
+            <input style="width: 2em;" type="text" id="interest" name="Interest" required />
 
             <label for="years">Years:</label>
-            <input style="width: 4em;"type="number" id="years" name="years" required />
+            <input style="width: 4em;"type="number" id="years" name="Years" required />
             <br>
             <button  type="submit"><b>Add Prospect</b></button>
          </form>

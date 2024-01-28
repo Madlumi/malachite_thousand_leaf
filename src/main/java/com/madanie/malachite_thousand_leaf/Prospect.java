@@ -1,5 +1,7 @@
 package com.madanie.malachite_thousand_leaf;
 
+import java.util.Map;
+
 import com.opencsv.bean.CsvBindByName;
 
 import jakarta.persistence.Entity;
@@ -13,27 +15,30 @@ public class Prospect {
    private Long id;
    public Long getId(){return id;}
 
-   @CsvBindByName(column = "Customer")
    private String customer;
    public String getCustomer(){return customer;}
    
-   @CsvBindByName(column = "Total Loan")
    private double totalLoan;
    public double getTotalLoan(){return totalLoan;}
    
    //yearly, in percent
-   @CsvBindByName(column = "Interest")
    private double interest;
    public double getInterest(){return interest;}
    
-   @CsvBindByName(column = "Years")
    private double years;
    public double getYears(){return years;}
 
 
-   public double getMonthly(){
-      return calcPayment(12);
+   public double getMonthly(){return calcPayment(12);}
+   public static Prospect prospectFromMap(Map<String, String> values){
+      try {
+         return new Prospect(values.get("Customer"), Double.parseDouble(values.get("Total loan")), Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
+      
+      } catch (Exception e) {
+      }
+      return null;
    }
+
    public Prospect(String cust, double total, double intr, int yr){
       customer=cust;
       totalLoan=total;
