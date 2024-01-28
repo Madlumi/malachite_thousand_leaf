@@ -30,8 +30,9 @@ public class Web {
    @PostMapping("/mortage")
    public String mortagePostCtr(@RequestParam Map<String,String> m, Model model) { 
       try {
-         Prospect p = Prospect.prospectFromMap(m);
-         if (p!=null)pr.save(p);
+         Prospect p = ProspectManager.prospectFromMap(m);
+         if (p!=null){pr.save(p);}
+         else {throw new Exception();}
       } catch (Exception e) {
          return "redirect:/mortage?error=true";
       }

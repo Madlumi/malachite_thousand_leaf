@@ -8,6 +8,7 @@ import java.util.List;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 public class Csv{
    public static List<Map<String, String>> read_csv(String file){
       List<Map<String, String>> data = new ArrayList<>();

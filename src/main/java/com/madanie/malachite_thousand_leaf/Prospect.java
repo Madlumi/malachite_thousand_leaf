@@ -1,7 +1,5 @@
 package com.madanie.malachite_thousand_leaf;
 
-import java.util.Map;
-
 import com.madanie.malachite_thousand_leaf.Util.Maths;
 
 import jakarta.persistence.Entity;
@@ -30,12 +28,12 @@ public class Prospect {
 
    public double getMonthly(){return calcPayment(12);}
 
-   //public functions---------------------------------------------------------------------------
-   public Prospect(String customer, double totalLoan, double interest, double years) {
-      this.customer = customer;
-      this.totalLoan = totalLoan;
-      this.interest = interest;
-      this.years = years;
+   protected Prospect(){}
+   public Prospect(String customer, double totalLoan, double interest, double years) {this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;}
+
+   //drop .00 of doubles
+   private String dropZeroDecimal(double number){
+      return ((number - (int)number)* (number - (int)number)< .001) ? String.format("%.0f", number) : String.format("%.2f", number);
    }
    @Override
    public String toString(){
@@ -43,27 +41,6 @@ public class Prospect {
             getId(), getCustomer(), dropZeroDecimal(getTotalLoan()), dropZeroDecimal(getYears()), dropZeroDecimal(getMonthly()));
    }
 
-   public static Prospect prospectFromMap(Map<String, String> values){
-      try {
-         String cust = values.get("Customer");
-         double tl=Double.parseDouble(values.get("Total loan"));
-         double intr = Double.parseDouble(values.get("Interest"));
-         int y = Integer.parseInt(values.get("Years"));
-         if(y<1){return null;} // we can add more validation here if needed
-         return new Prospect(cust, tl, intr , y);
-      } catch (Exception e) {
-         return null;
-      }
-   }
-
-   public static void printAll(ProspectRepo pr){
-      pr.findAll().forEach(p -> {
-         System.out.println("****************************************************************************************************");
-         System.out.println(p.toString());
-         System.out.println("****************************************************************************************************");
-      });
-   }
-   //private functions-----------------------------------------------------------------------------
    private double calcPayment(int paymentsPerYear){
       double b = (getInterest() / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
       double U = getTotalLoan();                               // U = Total loan
@@ -71,9 +48,5 @@ public class Prospect {
       double E = U * (b*Maths.pow((1 + b),p)) / (Maths.pow(( 1 + b),p)-1); //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
       return E;                                                // E = Fixed monthly payment
    }
-   //drop .00 of doubles
-   private String dropZeroDecimal(double number){
-      return ((number - (int)number)* (number - (int)number)< .001) ? String.format("%.0f", number) : String.format("%.2f", number);
-   }
-   protected Prospect(){}
+
 }
