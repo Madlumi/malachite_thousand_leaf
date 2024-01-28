@@ -2,6 +2,7 @@ package com.madanie.malachite_thousand_leaf;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Web {
 
+   @Autowired
+   private ProspectRepo pr;
    @GetMapping("/mortage")
-   public String mc(Model model){
-      List<String> prospectStrings = new ArrayList<>();
-      for(Prospect p : MalachiteThousandLeafApplication.propects.getProspectList()){
-         prospectStrings.add(p.toString());
-      }
-      model.addAttribute("prospects", prospectStrings);
+   public String mc(Model model ){
+      List<String> pstr = new ArrayList<>();
+      pr.findAll().forEach(p -> {
+         pstr.add(p.toString());
+      });
+      model.addAttribute("prospects", pstr);
       return "mortage";
    }
 
@@ -29,14 +32,8 @@ public class Web {
          @RequestParam(value = "years") int years,
          Model model){
       try {
-         Prospect p = new Prospect();
-         p.setCustomer(customer);
-         p.setTotalLoan(Double.parseDouble(total));
-         p.setInterest(Double.parseDouble(interest));
-         p.setYears(years);
-         MalachiteThousandLeafApplication.propects.addProspect(p);
+         pr.save(new Prospect(customer,Double.parseDouble(total),Double.parseDouble(interest),years ));
       } catch (Exception e) {
-         //e.printStackTrace();
          return "redirect:/mortage?error=true";
       }
       return "redirect:/mortage";

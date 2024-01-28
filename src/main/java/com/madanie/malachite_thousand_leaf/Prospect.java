@@ -2,34 +2,43 @@ package com.madanie.malachite_thousand_leaf;
 
 import com.opencsv.bean.CsvBindByName;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+@Entity
 public class Prospect {
-   private long id=0L;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
    public Long getId(){return id;}
-   public void setId(long i){id=i;}
+
    @CsvBindByName(column = "Customer")
    private String customer;
-   public void   setCustomer(String customer){this.customer = customer;}
    public String getCustomer(){return customer;}
+   
    @CsvBindByName(column = "Total Loan")
    private double totalLoan;
-   public void   setTotalLoan(double totalLoan){this.totalLoan = totalLoan;}
    public double getTotalLoan(){return totalLoan;}
+   
    //yearly, in percent
    @CsvBindByName(column = "Interest")
    private double interest;
-   public void   setInterest(double interest){this.interest = interest;}
    public double getInterest(){return interest;}
+   
    @CsvBindByName(column = "Years")
    private double years;
-   public void   setYears(double years){this.years = years;}
    public double getYears(){return years;}
 
-   public Prospect(){}
 
-   private double monthly;
    public double getMonthly(){
-      monthly=calcPayment(12);
-      return monthly;
+      return calcPayment(12);
+   }
+   public Prospect(String cust, double total, double intr, int yr){
+      customer=cust;
+      totalLoan=total;
+      interest=intr;
+      years=yr;
    }
 
    private String dropZeroDecimal(double number){
@@ -50,4 +59,5 @@ public class Prospect {
    }
 
 
+   protected Prospect(){}
 }

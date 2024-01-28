@@ -7,22 +7,22 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
 
    public static void main(String[] args) {
-      CommandLine cmd = getArgs(args);
-      init(cmd.getOptionValue("i", "prospects.txt"));
-      if(cmd.hasOption("w"))SpringApplication.run(MalachiteThousandLeafApplication.class, args);
+      //CommandLine cmd = getArgs(args);
+      //init(cmd.getOptionValue("i", "prospects.txt"));
+      //if(cmd.hasOption("w"))
+         SpringApplication.run(MalachiteThousandLeafApplication.class, args);
    }
-
-   public static ProspectHandler propects;
-   
    public static void init(String file){
-      propects = new ProspectHandler().load(file);
-      propects.print(true);
+     // propects = new ProspectHandler().load(file);
+     // propects.print(true);
    }
 
    private static CommandLine getArgs(String[] args){

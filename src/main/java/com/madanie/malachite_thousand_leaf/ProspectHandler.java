@@ -5,30 +5,28 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 public class ProspectHandler{
-   public List<Prospect> prospects= new ArrayList<Prospect>();
-   public List<Prospect> getProspectList(){return prospects;}
-   private long nextid=1L;
+   
 
-   public void addProspect(Prospect p){
-      p.setId(nextid++);
-      prospects.add(p);
-   }
+   @Autowired
+   private ProspectRepo pr;
    public ProspectHandler load(String file){
-      try {
-         List<Prospect> p = new CsvToBeanBuilder(new FileReader(file)).withType(Prospect.class).withThrowExceptions(false).build().parse();
-         for(Prospect pr : p){pr.setId(nextid++);}
-         prospects.addAll(p);
-      } catch (Exception e){e.printStackTrace();}
-      return this;
+  //    try {
+  //       List<Prospect> p = new CsvToBeanBuilder(new FileReader(file)).withType(Prospect.class).withThrowExceptions(false).build().parse();
+  //       prospects.addAll(p);
+  //    } catch (Exception e){e.printStackTrace();}
+  //    return this;
    }
+   
+
    public void print(boolean separators) {
-      if(prospects==null){return;}
-         for(Prospect p : prospects ){
+      pr.findAll().forEach(p -> {
             if(separators){System.out.println("****************************************************************************************************");}
-            System.out.println(p.toString());
+         System.out.println(p.toString());
             if(separators){System.out.println("****************************************************************************************************");}
-         }
+      });
    }
 }
