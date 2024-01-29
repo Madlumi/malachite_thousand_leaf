@@ -2,6 +2,8 @@ package com.madanie.malachite_thousand_leaf;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.madanie.malachite_thousand_leaf.Util.Maths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

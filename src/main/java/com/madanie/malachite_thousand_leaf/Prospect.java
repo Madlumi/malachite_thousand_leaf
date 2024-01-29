@@ -31,16 +31,17 @@ public class Prospect {
    protected Prospect(){}
    public Prospect(String customer, double totalLoan, double interest, double years) {this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;}
 
-   //drop .00 of doubles
+   //drop .00 of doubles, could be moved into a class in the utils package
    private String dropZeroDecimal(double number){
       return ((number - (int)number)* (number - (int)number)< .001) ? String.format("%.0f", number) : String.format("%.2f", number);
    }
    @Override
    public String toString(){
-      return String.format("Prospect %d: %s wants to borrow %s € for a period of %s years and pay %s € each month", 
+      return String.format("Prospect %d: %s wants to borrow %s€ for a period of %s years and pay %s€ each month", 
             getId(), getCustomer(), dropZeroDecimal(getTotalLoan()), dropZeroDecimal(getYears()), dropZeroDecimal(getMonthly()));
    }
 
+   //could feasibly be broken off into the maths class
    private double calcPayment(int paymentsPerYear){
       double b = (getInterest() / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
       double U = getTotalLoan();                               // U = Total loan

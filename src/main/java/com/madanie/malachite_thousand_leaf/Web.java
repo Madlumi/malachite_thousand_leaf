@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Web {
 
-   @Autowired
-   private ProspectRepo pr;
+       private final ProspectRepo pr;
+
+    @Autowired
+    public Web(ProspectRepo pr) {
+        this.pr = pr;
+    }
 
    @GetMapping("/mortage")
    public String mortageCtr(Model model ){

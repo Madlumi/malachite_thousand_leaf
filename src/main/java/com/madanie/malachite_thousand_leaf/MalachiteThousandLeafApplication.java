@@ -15,6 +15,7 @@ public class MalachiteThousandLeafApplication {
   
    public static void main(String[] args) {
       CommandLine cmd = getArgs(args);
+      //set file to load to -i flag, with  default if unset
       ProspectManager.setProspectFile(cmd.getOptionValue("i", "prospects.txt"));
       //only start web server if -w/--web flag is set
       new SpringApplicationBuilder(MalachiteThousandLeafApplication.class)
