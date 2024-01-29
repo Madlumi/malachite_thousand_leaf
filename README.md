@@ -8,6 +8,8 @@ Run tests:
 
 Docker stuff:
 >./mvnw install 
+
 >docker build -t myorg/myapp .
+
 >docker run -v $(pwd)/prospects.txt:/prospects.txt -p 8080:8080 myorg/myapp -w -i "prospects.txt"
 
