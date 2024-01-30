@@ -12,15 +12,16 @@ import org.apache.commons.cli.Options;
 
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
-  
+
    public static void main(String[] args) {
+      //handle flags
       CommandLine cmd = getArgs(args);
+
       //set file to load to -i flag, with  default if unset
       ProspectManager.setProspectFile(cmd.getOptionValue("i", "prospects.txt"));
+
       //only start web server if -w/--web flag is set
-      new SpringApplicationBuilder(MalachiteThousandLeafApplication.class)
-         .web( cmd.hasOption("w") ? WebApplicationType.SERVLET : WebApplicationType.NONE)
-         .run(args);
+      new SpringApplicationBuilder(MalachiteThousandLeafApplication.class).web( cmd.hasOption("w") ? WebApplicationType.SERVLET : WebApplicationType.NONE ).run(args);
    }
 
    private static CommandLine getArgs(String[] args){

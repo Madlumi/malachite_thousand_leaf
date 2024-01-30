@@ -13,19 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class Web {
 
-       private final ProspectRepo pr;
+   private final ProspectRepo pr;
 
-    @Autowired
-    public Web(ProspectRepo pr) {
-        this.pr = pr;
-    }
+   @Autowired
+   public Web(ProspectRepo pr){ this.pr = pr; }
 
    @GetMapping("/mortage")
    public String mortageCtr(Model model ){
       List<String> pstr = new ArrayList<>();
-      pr.findAll().forEach(p -> {
-         pstr.add(p.toString());
-      });
+      pr.findAll().forEach(p -> { pstr.add(p.toString()); });
       model.addAttribute("prospects", pstr);
       return "mortage";
    }

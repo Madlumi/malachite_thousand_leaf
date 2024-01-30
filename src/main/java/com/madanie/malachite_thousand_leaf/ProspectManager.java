@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Configuration
 public class ProspectManager{
+   //could possibly be merged with the prospect class, but not sure is good oop design
 
    private static String file;
    public static void setProspectFile(String f){ file = f; }

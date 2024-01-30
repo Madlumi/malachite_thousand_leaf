@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 @Entity
 public class Prospect {
-   //Data---------------------------------------------------------------------------------------
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
@@ -29,11 +28,16 @@ public class Prospect {
    public double getMonthly(){return calcPayment(12);}
 
    protected Prospect(){}
-   public Prospect(String customer, double totalLoan, double interest, double years) {this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;}
+   //does not validate data
+   protected Prospect(String customer, double totalLoan, double interest, double years) {
+      this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;
+   }
 
    //drop .00 of doubles, could be moved into a class in the utils package
    private String dropZeroDecimal(double number){
-      return ((number - (int)number)* (number - (int)number)< .001) ? String.format("%.0f", number) : String.format("%.2f", number);
+      return (((number-(int)number) * (number-(int)number)) < .001) ? 
+         String.format("%.0f", number) : 
+         String.format("%.2f", number);
    }
    @Override
    public String toString(){
