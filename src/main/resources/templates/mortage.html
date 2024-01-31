@@ -13,6 +13,7 @@
          <table id="st" class="stars"style="color:Yellow;">
             <th>*</th>
             <script>
+            //background stars
 var tbodyRef = document.getElementById('st').getElementsByTagName('tbody')[0];
 for (let y = 0; y < 040; y++){
    var newRow = tbodyRef.insertRow();
@@ -56,13 +57,54 @@ for (let y = 0; y < 040; y++){
             <button  type="submit"><b>Add Prospect</b></button>
          </form>
 
-         <div th:if="${param.error ne null}" class="error-box">
-            <p>Invalid input. Please check your values.</p>
-         </div>
          
-         <div th:if="${param.error eq null}" class="error-box-empty">
-            <p style="color: var(--content-bg-col2);;"> - </p>
+         <script>
+         // quick lil js to do realtime maths
+         // Wait for the document to be ready
+         document.addEventListener('DOMContentLoaded', function () {
+
+            var totalInput = document.getElementById('total');
+            var interestInput = document.getElementById('interest');
+            var yearsInput = document.getElementById('years');
+            var outputElement = document.getElementById('output');
+            var outputBox= document.getElementById('outputBox');
+
+            // Attach an input event listener to all input fields
+            [totalInput, interestInput, yearsInput].forEach(function (input) {
+               input.addEventListener('input', function () {
+                  
+                  var total = parseFloat(totalInput.value) || 0;
+                  var interest = parseFloat(interestInput.value) || 0;
+                  var years = parseFloat(yearsInput.value) || 0;
+
+                  if(years < 1 || total < 1 || interest <= 0){
+                     outputElement.textContent ="-";
+                     outputElement.style.color = 'var(--content-bg-col2)';
+                  }else{
+                     var monthlyInterestRate = interest / (100 * 12);
+                     var numberOfPayments = years * 12;
+                     var powerFactor = Pow(1 + monthlyInterestRate, numberOfPayments);
+                     var monthlyPayment = (total * monthlyInterestRate * powerFactor) / (powerFactor - 1);
+                     outputElement.textContent = 'Fixed Monthly Payment: ' + monthlyPayment.toFixed(2) +"€";
+                     outputElement.style.color = '';
+                     outputElement.className= '';
+                     outputBox.className= 'error-box-empty';
+                  }
+               });
+            });
+         });
+         function Pow(base, exponent) {
+            var result = 1;
+            for (var i = 0; i < exponent; i++) {result *= base;}
+            return result;
+         }
+         </script>
+
+
+         <div id="outputBox"th:class="${param.error ne null} ? 'error-box' : 'error-box-empty'">
+            <p  id="output" th:text="${param.error ne null} ? 'Invalid input. Please check your values.' : '-'"  th:style="${param.error ne null} ? '' : 'color: var(--content-bg-col2);'"> </p>
          </div>
+
          <hr style="color:var(--border-col);">
          <ol reversed type="1" class="striped-list">
             <li th:each="prospectString : ${prospects}" th:text="${prospectString}"></li>
