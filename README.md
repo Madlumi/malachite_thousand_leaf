@@ -11,18 +11,18 @@ A codetest mortgage calculator made in Java using Spring Boot.
 >./mvnw spring-boot:run -Dspring-boot.run.arguments="--input prospects.txt -w"
 
 
-###Run tests:
+### Run tests:
 
 >./mvnw test
 
 
-###Docker stuff:
+### Docker stuff:
 
 >./mvnw install && docker build -t com.madanie/malachite_thousand_leaf . && docker run -v $(pwd)/prospects.txt:/prospects.txt -p 8080:8080 com.madanie/malachite_thousand_leaf -w -i "prospects.txt"
 
 ---
 
-##some limitations:
+## some limitations:
 Uses an h2 in memory datbase, meaning no persistant memory.
 
 No user verification or login system meaning it's not really suitable for the open web. 
