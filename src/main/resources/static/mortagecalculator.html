@@ -14,23 +14,23 @@
             <th>*</th>
             <script>
             //background stars
-var tbodyRef = document.getElementById('st').getElementsByTagName('tbody')[0];
-for (let y = 0; y < 040; y++){
-   var newRow = tbodyRef.insertRow();
-   for (let x = 0; x < 100; x++){
-      newRow.style.backgroundColor = "#"+((parseInt(y*.15)).toString(16).padStart(2, '0'))+"00"+ ((parseInt(y*.2)).toString(16).padStart(2, '0'));
-      var newCell = newRow.insertCell();
-      if(Math.random() < 0.007){
-         var newText = document.createTextNode('*');
-      }else if(Math.random() < 0.007){
-         var newText = document.createTextNode('+');
-      }else{
+            var tbodyRef = document.getElementById('st').getElementsByTagName('tbody')[0];
+            for (let y = 0; y < 040; y++){
+            var newRow = tbodyRef.insertRow();
+            for (let x = 0; x < 100; x++){
+            newRow.style.backgroundColor = "#"+((parseInt(y*.15)).toString(16).padStart(2, '0'))+"00"+ ((parseInt(y*.2)).toString(16).padStart(2, '0'));
+            var newCell = newRow.insertCell();
+            if(Math.random() < 0.007){
+            var newText = document.createTextNode('*');
+            }else if(Math.random() < 0.007){
+            var newText = document.createTextNode('+');
+            }else{
 
-         var newText = document.createTextNode(' ');
-      }
-      newCell.appendChild(newText);
-   }
-}
+            var newText = document.createTextNode(' ');
+            }
+            newCell.appendChild(newText);
+            }
+            }
             </script>
          </table>
       </div>
@@ -41,23 +41,18 @@ for (let y = 0; y < 040; y++){
 
          <h1>Mortage Calculator</h1>
          <hr style="color:var(--border-col);">
-         <form th:action="@{/mortage}" method="post">
-            <label for="customer">Name:</label>
-            <input style="width: 8em;" type="text" id="customer" name="Customer" required />
 
-            <label for="total">Total:</label>
-            <input style="width: 4em;" type="text" id="total" name="Total loan" required />
+         <label for="total">Total:</label>
+         <input style="width: 4em;" type="text" id="total" name="Total loan" required />
 
-            <label for="interest">Interest(%yr):</label>
-            <input style="width: 2em;" type="text" id="interest" name="Interest" required />
+         <label for="interest">Interest(%yr):</label>
+         <input style="width: 2em;" type="text" id="interest" name="Interest" required />
 
-            <label for="years">Years:</label>
-            <input style="width: 4em;"type="number" id="years" name="Years" required />
-            <br>
-            <button  type="submit"><b>Add Prospect</b></button>
-         </form>
+         <label for="years">Years:</label>
+         <input style="width: 4em;"type="number" id="years" name="Years" required />
+         <br>
 
-         
+
          <script>
          // quick lil js to do realtime maths
          // Wait for the document to be ready
@@ -72,7 +67,7 @@ for (let y = 0; y < 040; y++){
             // Attach an input event listener to all input fields
             [totalInput, interestInput, yearsInput].forEach(function (input) {
                input.addEventListener('input', function () {
-                  
+
                   var total = parseFloat(totalInput.value) || 0;
                   var interest = parseFloat(interestInput.value) || 0;
                   var years = parseFloat(yearsInput.value) || 0;
@@ -100,16 +95,10 @@ for (let y = 0; y < 040; y++){
          }
          </script>
 
-
-         <div id="outputBox"th:class="${param.error ne null} ? 'error-box' : 'error-box-empty'">
-            <p  id="output" th:text="${param.error ne null} ? 'Invalid input. Please check your values.' : '-'"  th:style="${param.error ne null} ? '' : 'color: var(--content-bg-col2);'"> </p>
+         <div class='error-box-empty'">
+            <p  id="output" style='color: var(--content-bg-col2);'> - </p>
          </div>
 
-         <hr style="color:var(--border-col);">
-         <ol reversed type="1" class="striped-list">
-            <li th:each="prospectString : ${prospects}" th:text="${prospectString}"></li>
-         </ol>
-      </div>
 
 
    </body>
