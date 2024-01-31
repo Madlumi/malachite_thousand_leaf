@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="Look.css">
+      <title>Malachite Thousand Leaf</title>
+   </head>
+   <body>
+
+
+      <div class="bg unselectable">
+         <table id="st" class="stars"style="color:Yellow;">
+            <th>*</th>
+            <script>
+            //background stars
+            var tbodyRef = document.getElementById('st').getElementsByTagName('tbody')[0];
+            for (let y = 0; y < 040; y++){
+               var newRow = tbodyRef.insertRow();
+               for (let x = 0; x < 100; x++){
+                  newRow.style.backgroundColor = "#"+((parseInt(y*.15)).toString(16).padStart(2, '0'))+"00"+ ((parseInt(y*.2)).toString(16).padStart(2, '0'));
+                  var newCell = newRow.insertCell();
+                  if(Math.random() < 0.007){
+                     var newText = document.createTextNode('*');
+                  }else if(Math.random() < 0.007){
+                     var newText = document.createTextNode('+');
+                  }else{
+
+                     var newText = document.createTextNode(' ');
+                  }
+                  newCell.appendChild(newText);
+               }
+            }
+            </script>
+         </table>
+      </div>
+
+      <div class="main-box">
+         <h1>Mortage Calculator</h1>
+         <hr style="color:var(--border-col);">
+         <h2>Java frontend</h2>
+         <a href="/mortage">Mortage Calculator</a> 
+         <br>
+         <br>
+         <h2>A simple calculator in js</h2>
+         <a href="/mortagecalculator.html">Static Page Mortage Calculator</a> 
+         <hr style="color:var(--border-col);">
+   </body>
+</html>
+
