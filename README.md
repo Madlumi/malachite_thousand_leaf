@@ -6,7 +6,7 @@ A codetest mortgage calculator made in Java using Spring Boot.
 
 ## How to Use
 
-###Run webUi(default port: 8080)
+### Run webUi(default port: 8080)
 
 >./mvnw spring-boot:run -Dspring-boot.run.arguments="--input prospects.txt -w"
 
