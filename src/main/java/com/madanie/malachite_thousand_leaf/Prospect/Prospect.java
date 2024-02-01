@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 import com.madanie.malachite_thousand_leaf.Util.Maths;
 @Entity
 public class Prospect {
@@ -33,14 +32,26 @@ public class Prospect {
       if(years<1){         throw new IllegalArgumentException("years cannot be < 1");}
       if(interest<=0){     throw new IllegalArgumentException("interest must be > 0");}
       if(customer==null){  throw new IllegalArgumentException("must have customer");}
+
       this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;
    }
+
    public Prospect(Map<String, String> values) throws IllegalArgumentException, NullPointerException{
-      this(values.get("Customer"), Double.parseDouble(values.get("Total loan")),  Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
+      this(
+            values.get("Customer"), 
+            Double.parseDouble(values.get("Total loan")),  
+            Double.parseDouble(values.get("Interest")), 
+            Integer.parseInt(values.get("Years")));
    }
+   
    @Override
    public String toString(){
-      return String.format("Prospect %d: %s wants to borrow %s€ for a period of %s years and pay %s€ each month", 
-            getId(), getCustomer(), Maths.dropZeroDecimal(getTotalLoan()), Maths.dropZeroDecimal(getYears()), Maths.dropZeroDecimal(getMonthly()));
+      return String.format(
+            "Prospect %d: %s wants to borrow %s€ for a period of %s years and pay %s€ each month", 
+            getId(), 
+            getCustomer(), 
+            Maths.dropZeroDecimal(getTotalLoan()), 
+            Maths.dropZeroDecimal(getYears()), 
+            Maths.dropZeroDecimal(getMonthly()));
    }
 }

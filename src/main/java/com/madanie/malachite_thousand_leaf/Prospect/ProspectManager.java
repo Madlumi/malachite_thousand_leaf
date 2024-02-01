@@ -11,23 +11,21 @@ import com.madanie.malachite_thousand_leaf.Util.Csv;
 public class ProspectManager{
    @Bean 
    public int initProspectRepo(ProspectRepo pr){
-      if (MalachiteThousandLeafApplication.cmdargs!=null){
-         String file = MalachiteThousandLeafApplication.cmdargs.getOptionValue("i", "prospects.txt");
-         prospectsFromCsv(pr, file);
-         printAll(pr);
-      }
+      if (MalachiteThousandLeafApplication.cmdargs==null){return 1;};
+      String file = MalachiteThousandLeafApplication.cmdargs.getOptionValue("i", "prospects.txt");
+      prospectsFromCsv(pr, file);
+      printAll(pr);
       return 1;
    }
 
    public void prospectsFromCsv(ProspectRepo pr, String file){
-      if(file!=null){
-         for (Map<String, String> m : Csv.read_csv(file)) {
-            try {
-               Prospect p = new Prospect(m);
-               if (p!=null){pr.save(p);}
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
+      if(file==null){return;};
+      for (Map<String, String> m : Csv.read_csv(file)) {
+         try {
+            Prospect p = new Prospect(m);
+            if (p!=null){pr.save(p);}
+         } catch (Exception e) {
+            e.printStackTrace();
          }
       }
    }
