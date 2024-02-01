@@ -38,14 +38,14 @@ public class MalachiteThousandLeafApplicationTests{
    public void mainMethodRunsSuccessfully() {
       String[] args = {"-i", "test.txt", "-w"} ;
       MalachiteThousandLeafApplication.main(args);
-      assertEquals("test.txt",MalachiteThousandLeafApplication.cmdargs.getOptionValue("i"));
-      assertTrue(MalachiteThousandLeafApplication.cmdargs.hasOption("w"));
+      assertEquals("test.txt",MalachiteThousandLeafApplication.getCmdargs().getOptionValue("i"));
+      assertTrue(MalachiteThousandLeafApplication.getCmdargs().hasOption("w"));
    }
    @Test
    public void mainMethodRunsSuccessfullyNoWeb() {
       String[] args = {"-i", "test.txt"} ;
       MalachiteThousandLeafApplication.main(args);
-      assertEquals("test.txt",MalachiteThousandLeafApplication.cmdargs.getOptionValue("i"));
-      assertFalse(MalachiteThousandLeafApplication.cmdargs.hasOption("w"));
+      assertEquals("test.txt",MalachiteThousandLeafApplication.getCmdargs().getOptionValue("i"));
+      assertFalse(MalachiteThousandLeafApplication.getCmdargs().hasOption("w"));
    }
 }

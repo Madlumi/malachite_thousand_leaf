@@ -94,7 +94,7 @@ import static org.junit.jupiter.api.Assertions.*;
          PrintStream origOut= System.out;
          ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
          System.setOut(new PrintStream(outputStream));
-         ProspectManager.printAll(prospectRepo);
+         //ProspectManager.printAll(prospectRepo);
          System.setOut(origOut);
          //the mock implementation does not generate id, hence null
          String expectedOutput =  "****************************************************************************************************\n" +

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Csv{
-   public static List<Map<String, String>> readCsv(String file){
+   public static List<Map<String, String>> readCsv(final String file){
       //failure returns empty list. 
       List<Map<String, String>> data = new ArrayList<>();
       try(CSVReader reader = new CSVReader(new FileReader(file))){
