@@ -34,8 +34,8 @@ class MathsTest {
    @Test
    public void testNegativeExponent(){
       //Negative exponents return 0 with current implementation
-      assertEquals(0.0, Maths.pow(5.0, -1), DELTA);
-      assertEquals(0.0, Maths.pow(2.0, -3), DELTA);
+      assertThrows(IllegalArgumentException.class, () -> Maths.pow(5.0, -1));
+      assertThrows(IllegalArgumentException.class, () -> Maths.pow(2.0, -3));
    }
 
    @Test
@@ -58,5 +58,14 @@ class MathsTest {
    @Test
    public void testNaN(){
       assertEquals(Double.NaN, Maths.pow(Double.NaN, 2), DELTA);
+   }
+   @Test
+   public void testMortage(){
+      //TODO assertEquals(0, Maths.mortagePayment(10, 1, 1), DELTA);
+   }
+   @Test
+   public void testMortageNoIntrest(){
+      assertEquals(100, Maths.mortagePayment(1200, 0, 1), DELTA);
+      assertEquals(50, Maths.mortagePayment(1200, 0, 2), DELTA);
    }
 }

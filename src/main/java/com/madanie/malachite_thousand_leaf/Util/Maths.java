@@ -2,8 +2,8 @@ package com.madanie.malachite_thousand_leaf.Util;
 
 public class Maths {
    //Does not handle negative numbers
-   public static double pow(double base,  int factor){
-      if(factor<0){return 0;}
+   public static double pow(double base,  int factor) throws IllegalArgumentException{
+      if(factor<0){throw new IllegalArgumentException("factor must not be negative");}
       double result = 1;
       for (int i = 0; i<factor; i++){
          result *= base;
@@ -11,10 +11,12 @@ public class Maths {
       return result;
    }
 
-   public static double mortagePayment(double totoal, double yearlyintrest, int years, int paymentsPerYear){
-      double b = (yearlyintrest / paymentsPerYear) * .01 ;    // b = Interest on a monthly basis
-      double U = totoal;
-      int p    = (int)(years * paymentsPerYear);             // p = Number of payments
+   public static double mortagePayment(double total, double yearlyintrest, int years){
+      double b = (yearlyintrest / 12) * .01 ;    // b = Interest on a monthly basis
+      double U = total;
+      int p    = (int)(years * 12);             // p = Number of payments
+      if(p<=0){return total;}//does not allow illegal number to be sent to pow
+      if(yearlyintrest==0){return (U/p);}
       double E = U * (b*pow((1 + b),p)) / (pow(( 1 + b),p)-1); //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
       return E;                                                // E = Fixed monthly payment
    }

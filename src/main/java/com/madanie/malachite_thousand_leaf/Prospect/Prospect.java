@@ -26,7 +26,7 @@ public class Prospect {
    private int years;
    public int getYears(){return years;}
 
-   public double getMonthly(){return Maths.mortagePayment(totalLoan, interest, years, 12);}
+   public double getMonthly(){return Maths.mortagePayment(totalLoan, interest, years);}
 
    public Prospect(String customer, double totalLoan, double interest, int years) throws IllegalArgumentException{
       if(years<1){         throw new IllegalArgumentException("years cannot be < 1");}
