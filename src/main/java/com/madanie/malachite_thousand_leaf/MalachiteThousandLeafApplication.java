@@ -11,9 +11,12 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 @SpringBootApplication
-public class MalachiteThousandLeafApplication {
-   public static CommandLine cmdargs;
-   public static void main(String[] args) {
+public class MalachiteThousandLeafApplication{
+   
+   private static CommandLine cmdargs;
+   public static CommandLine getCmdargs(){return cmdargs;}
+
+   public static void main(String[] args){
       cmdargs = getArgs(args);
       //only start web server if -w/--web flag is set
       new SpringApplicationBuilder(MalachiteThousandLeafApplication.class).web(
@@ -24,18 +27,18 @@ public class MalachiteThousandLeafApplication {
    private static CommandLine getArgs(String[] args){
       CommandLineParser parser = new DefaultParser();
       Options options = new Options();
-      options.addOption("i", "input", true, "Input file (default: prospects.txt)");
+      options.addOption("i", "input", true, "Input file(default: prospects.txt)");
       options.addOption("w", "web", false, "Enable web UI");
       options.addOption("h", "help", false, "Print help message");
-      try {
+      try{
          CommandLine cmd = parser.parse(options, args);
-         if (cmd.hasOption("h")) {
+         if(cmd.hasOption("h")){
             HelpFormatter formatter= new HelpFormatter();
             formatter.printHelp("MalachiteThousandLeafApplication", options);
             System.exit(0);
          }
          return cmd;
-      } catch (Exception e) {
+      }catch(Exception e){
          System.err.println("Error parsing command line arguments: " + e.getMessage());
          System.exit(1);
          return null;

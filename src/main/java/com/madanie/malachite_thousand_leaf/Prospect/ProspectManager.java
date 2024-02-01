@@ -11,7 +11,7 @@ import com.madanie.malachite_thousand_leaf.Util.Csv;
 public class ProspectManager{
    @Bean 
    public int initProspectRepo(ProspectRepo pr){
-      if (MalachiteThousandLeafApplication.cmdargs==null){return 1;};
+      if(MalachiteThousandLeafApplication.getCmdargs()==null){ return 1; }
       String file = MalachiteThousandLeafApplication.cmdargs.getOptionValue("i", "prospects.txt");
       prospectsFromCsv(pr, file);
       printAll(pr);
@@ -19,22 +19,24 @@ public class ProspectManager{
    }
 
    public void prospectsFromCsv(ProspectRepo pr, String file){
-      if(file==null){return;};
-      for (Map<String, String> m : Csv.read_csv(file)) {
-         try {
+      if(file==null){return;}
+      for(Map<String, String> m : Csv.readCsv(file)){
+         try{
             Prospect p = new Prospect(m);
-            if (p!=null){pr.save(p);}
-         } catch (Exception e) {
+            if(p!=null){pr.save(p);}
+         }catch(Exception e){
             e.printStackTrace();
          }
       }
    }
 
    public static void printAll(ProspectRepo pr){
+      final String SEPARATOR=  
+         "****************************************************************************************************";
       pr.findAll().forEach(p -> {
-         System.out.println("****************************************************************************************************");
+         System.out.println(SEPARATOR);
          System.out.println(p.toString());
-         System.out.println("****************************************************************************************************");
+         System.out.println(SEPARATOR);
       });
    }
 

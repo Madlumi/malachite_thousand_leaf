@@ -35,7 +35,7 @@ public class CsvTest {
     @Test
     void testReadCsv() {
         String filePath = "testfiles/prospects.txt";  // Replace with the actual file path
-        List<Map<String, String>> actualdata = Csv.read_csv(filePath);
+        List<Map<String, String>> actualdata = Csv.readCsv(filePath);
         assertEquals(4, actualdata.size(), "Number of rows should match");
         List<Map<String, String>> expectedData = List.of(
             Map.of("Customer", "Juha", "Total loan", "1000", "Interest", "5", "Years", "2"),
@@ -48,7 +48,7 @@ public class CsvTest {
     @Test
     void testReadCsvEmpty() {
         String filePath = "testfiles/empty.txt";  // Replace with the actual file path
-        List<Map<String, String>> actualdata = Csv.read_csv(filePath);
+        List<Map<String, String>> actualdata = Csv.readCsv(filePath);
         assertEquals(0, actualdata.size(), "Number of rows should match");
         List<Map<String, String>> expectedData = List.of();
         assertEquals(expectedData, actualdata);
@@ -56,7 +56,7 @@ public class CsvTest {
     @Test
     void testReadCsvNoPath() {
         String filePath = "testfiles/noFileFound.txt";  // Replace with the actual file path
-        List<Map<String, String>> actualdata = Csv.read_csv(filePath);
+        List<Map<String, String>> actualdata = Csv.readCsv(filePath);
         assertEquals(0, actualdata.size(), "Number of rows should match");
         List<Map<String, String>> expectedData = List.of();
         assertEquals(expectedData, actualdata);
@@ -64,7 +64,7 @@ public class CsvTest {
     @Test
     void testReadCsvInvalidlong() {
         String filePath = "testfiles/invalidHeadLong.txt";  // Replace with the actual file path
-        List<Map<String, String>> actualdata = Csv.read_csv(filePath);
+        List<Map<String, String>> actualdata = Csv.readCsv(filePath);
         assertEquals(1, actualdata.size(), "Number of rows should match");
         List<Map<String, String>> expectedData = List.of(
 
@@ -75,7 +75,7 @@ public class CsvTest {
     @Test
     void testReadCsvInvalidShort() {
         String filePath = "testfiles/invalidHeadShort.txt";  // Replace with the actual file path
-        List<Map<String, String>> actualdata = Csv.read_csv(filePath);
+        List<Map<String, String>> actualdata = Csv.readCsv(filePath);
         assertEquals(0, actualdata.size(), "Number of rows should match");
         List<Map<String, String>> expectedData = List.of();
         assertEquals(expectedData, actualdata);

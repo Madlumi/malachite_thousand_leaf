@@ -14,7 +14,7 @@ import com.madanie.malachite_thousand_leaf.Prospect.Prospect;
 import com.madanie.malachite_thousand_leaf.Prospect.ProspectRepo;
 
 @Controller
-public class Web {
+public final class Web {
 
    private final ProspectRepo pr;
 
@@ -22,7 +22,7 @@ public class Web {
    public Web(ProspectRepo pr){ this.pr = pr; }
 
    @GetMapping("/mortage")
-   public String mortageCtr(Model model ){
+   public String mortageCtr(Model model){
       List<String> pstr = new ArrayList<>();
       pr.findAll().forEach(p -> { pstr.add(p.toString()); });
       model.addAttribute("prospects", pstr);
@@ -31,11 +31,11 @@ public class Web {
 
 
    @PostMapping("/mortage")
-   public String mortagePostCtr(@RequestParam Map<String,String> m, Model model) { 
-      try {
+   public String mortagePostCtr(@RequestParam Map<String,String> m, Model model){ 
+      try{
          Prospect p = new Prospect(m);
-         if (p!=null){pr.save(p);}
-      } catch (Exception e) {
+         if(p!=null){pr.save(p);}
+      }catch(Exception e){
          return "redirect:/mortage?error=true";
       }
       return "redirect:/mortage";

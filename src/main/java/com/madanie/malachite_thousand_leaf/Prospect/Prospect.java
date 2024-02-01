@@ -15,13 +15,13 @@ public class Prospect {
    public Long getId(){return id;}
 
    private String customer;
-   public String getCustomer(){return customer;}
+   public String getCustomer(){ return customer; }
 
    private double totalLoan;
-   public double getTotalLoan(){return totalLoan;}
+   public double getTotalLoan(){ return totalLoan; }
 
    private double interest; //yearly, in percent
-   public double getInterest(){return interest;}
+   public double getInterest(){ return interest; }
 
    private int years;
    public int getYears(){return years;}
@@ -29,9 +29,9 @@ public class Prospect {
    public double getMonthly(){return Maths.mortagePayment(totalLoan, interest, years);}
 
    public Prospect(String customer, double totalLoan, double interest, int years) throws IllegalArgumentException{
-      if(years<1){         throw new IllegalArgumentException("years cannot be < 1");}
-      if(interest<=0){     throw new IllegalArgumentException("interest must be > 0");}
-      if(customer==null){  throw new IllegalArgumentException("must have customer");}
+      if(years<1){ throw new IllegalArgumentException("years cannot be < 1"); }
+      if(interest<=0){ throw new IllegalArgumentException("interest must be > 0"); }
+      if(customer==null){ throw new IllegalArgumentException("must have customer"); }
 
       this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;
    }

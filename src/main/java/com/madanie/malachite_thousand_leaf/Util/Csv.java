@@ -10,23 +10,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Csv{
-   public static List<Map<String, String>> read_csv(String file){
+   public static List<Map<String, String>> readCsv(String file){
       //failure returns empty list. 
       List<Map<String, String>> data = new ArrayList<>();
-      try (CSVReader reader = new CSVReader(new FileReader(file))) {
+      try(CSVReader reader = new CSVReader(new FileReader(file))){
          //assume first line declares data fields
          String[] fields = reader.readNext();
-         if (fields == null) { return data; }
+         if(fields == null){ return data; }
 
          String[] line;
-         while ((line = reader.readNext()) != null) {
-            if (line.length != fields.length) { continue; }
+         while((line = reader.readNext()) != null){
+            if(line.length != fields.length){ continue; }
             Map<String, String> row = new HashMap<>();
-            for (int i = 0; i < fields.length; i++) { row.put(fields[i], line[i]); }
+            for(int i = 0; i < fields.length; i++){ row.put(fields[i], line[i]); }
             data.add(row);
          }
 
-      } catch (IOException | CsvValidationException e) {
+      }catch(IOException | CsvValidationException e){
          System.err.println("CSV Parse error:");
          e.printStackTrace();
       }
