@@ -1,15 +1,37 @@
 package com.madanie.malachite_thousand_leaf;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.madanie.malachite_thousand_leaf.Util.Csv;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Map;
 
 public class CsvTest {
 
+   private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+   private final ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+   private final PrintStream origOut = System.out;
+   private final PrintStream origErr= System.err;
+
+   @BeforeEach
+   public void setUpStreams() {
+      System.setOut(new PrintStream(outStream));
+      System.setErr(new PrintStream(errStream));
+   }
+
+   @AfterEach
+   public void restoreStreams() {
+      System.setOut(origOut);
+      System.setErr(origErr);
+   }
     @Test
     void testReadCsv() {
         String filePath = "testfiles/prospects.txt";  // Replace with the actual file path

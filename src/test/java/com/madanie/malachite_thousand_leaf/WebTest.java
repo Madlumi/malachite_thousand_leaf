@@ -11,6 +11,8 @@ import org.mockito.Mockito;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.madanie.malachite_thousand_leaf.Prospect.*;
+
 import java.util.Collections;
 @WebMvcTest(Web.class)
 @ExtendWith(SpringExtension.class)

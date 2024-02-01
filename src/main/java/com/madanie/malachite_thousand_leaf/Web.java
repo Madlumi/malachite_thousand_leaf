@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.madanie.malachite_thousand_leaf.Prospect.Prospect;
+import com.madanie.malachite_thousand_leaf.Prospect.ProspectRepo;
+
 @Controller
 public class Web {
 
@@ -30,9 +33,8 @@ public class Web {
    @PostMapping("/mortage")
    public String mortagePostCtr(@RequestParam Map<String,String> m, Model model) { 
       try {
-         Prospect p = ProspectManager.prospectFromMap(m);
+         Prospect p = new Prospect(m);
          if (p!=null){pr.save(p);}
-         else {throw new Exception();}
       } catch (Exception e) {
          return "redirect:/mortage?error=true";
       }

@@ -1,4 +1,6 @@
-package com.madanie.malachite_thousand_leaf;
+package com.madanie.malachite_thousand_leaf.Prospect;
+
+import java.util.Map;
 
 import com.madanie.malachite_thousand_leaf.Util.Maths;
 
@@ -27,12 +29,15 @@ public class Prospect {
 
    public double getMonthly(){return calcPayment(12);}
 
-   protected Prospect(){}
-   //does not validate data
-   protected Prospect(String customer, double totalLoan, double interest, double years) {
+   public Prospect(String customer, double totalLoan, double interest, double years) throws IllegalArgumentException{
+      if(years<1){         throw new IllegalArgumentException("years cannot be < 1");}
+      if(interest<=0){     throw new IllegalArgumentException("interest must be > 0");}
+      if(customer==null){  throw new IllegalArgumentException("must have customer");}
       this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;
    }
-
+   public Prospect(Map<String, String> values) throws IllegalArgumentException, NullPointerException{
+      this(values.get("Customer"), Double.parseDouble(values.get("Total loan")),  Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
+   }
    //drop .00 of doubles, could be moved into a class in the utils package
    private String dropZeroDecimal(double number){
       return (((number-(int)number) * (number-(int)number)) < .001) ? 

@@ -4,6 +4,8 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import com.madanie.malachite_thousand_leaf.Prospect.ProspectManager;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -18,6 +20,7 @@ public class MalachiteThousandLeafApplication {
       CommandLine cmd = getArgs(args);
 
       //set file to load to -i flag, with  default if unset
+      //not sure this is good way to set file
       ProspectManager.setProspectFile(cmd.getOptionValue("i", "prospects.txt"));
 
       //only start web server if -w/--web flag is set

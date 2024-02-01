@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.madanie.malachite_thousand_leaf.Prospect.ProspectManager;
+
 
 @SpringBootTest
 public class MalachiteThousandLeafApplicationTests{

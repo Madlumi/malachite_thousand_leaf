@@ -6,6 +6,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.madanie.malachite_thousand_leaf.Prospect.Prospect;
+import com.madanie.malachite_thousand_leaf.Prospect.ProspectManager;
+import com.madanie.malachite_thousand_leaf.Prospect.ProspectRepo;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
       @Test
       void testProspectFromMap() {
          Map<String, String> testData = Map.of( "Customer", "TestCustomer", "Total loan", "5000", "Interest", "3.5", "Years", "4");
-         Prospect p = ProspectManager.prospectFromMap(testData);
+         Prospect p = new Prospect(testData);
          assertNotNull(p, "Prospect should not be null");
          assertEquals("TestCustomer", p.getCustomer());
          assertEquals(5000, p.getTotalLoan(),000001);
@@ -38,18 +42,14 @@ import static org.junit.jupiter.api.Assertions.*;
       }
       @Test
       void testProspectFromMapInvalid() {
-         Map<String, String> testData = Map.of( "Gustomer", "TestCustomer", "Total loan", "5000", "Interest", "3.5", "Years", "4");
-         Prospect p = ProspectManager.prospectFromMap(testData);
-         assertNull(p);
+         Map<String, String> testData1 = Map.of( "Gustomer", "TestCustomer", "Total loan", "5000", "Interest", "3.5", "Years", "4");
          Map<String, String> testData2 = Map.of( "Customer", "TestCustomer", "Total loan", "5000a", "Interest", "3.5", "Years", "4");
-         Prospect p2 = ProspectManager.prospectFromMap(testData2);
-         assertNull(p2);
          Map<String, String> testData3 = Map.of( "Customer", "TestCustomer", "Total loan", "5000", "Interest", "3.5", "Years", "0");
-         Prospect p3 = ProspectManager.prospectFromMap(testData3);
-         assertNull(p3);
          Map<String, String> testData4 = Map.of( "Customer", "TestCustomer", "Tutal loan", "5000", "Interest", "4.5", "Years", "1");
-         Prospect p4 = ProspectManager.prospectFromMap(testData4);
-         assertNull(p4);
+         assertThrows(IllegalArgumentException.class, () -> new Prospect(testData1));
+         assertThrows(IllegalArgumentException.class, () -> new Prospect(testData2));
+         assertThrows(IllegalArgumentException.class, () -> new Prospect(testData3));
+         assertThrows(NullPointerException.class, () -> new Prospect(testData4));
       }
 
       @Mock
