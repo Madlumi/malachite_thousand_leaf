@@ -61,8 +61,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
       @Test
       void testProspectsFromCsv() {
-         ProspectManager.setProspectFile("testfiles/prospects.txt");
-         prospectManager.prospectsFromCsv(prospectRepo);
+         prospectManager.prospectsFromCsv(prospectRepo,"testfiles/prospects.txt");
          verify(prospectRepo, times(4)).save(any());
       }
 

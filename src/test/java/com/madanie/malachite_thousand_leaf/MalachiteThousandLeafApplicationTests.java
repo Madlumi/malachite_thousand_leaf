@@ -1,6 +1,8 @@
 package com.madanie.malachite_thousand_leaf;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -9,9 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.madanie.malachite_thousand_leaf.Prospect.ProspectManager;
-
 
 @SpringBootTest
 public class MalachiteThousandLeafApplicationTests{
@@ -32,13 +31,21 @@ public class MalachiteThousandLeafApplicationTests{
       System.setErr(origErr);
    }
 
-    @Test
-    public void contextLoads() {}
+   @Test
+   public void contextLoads() {}
 
-    @Test
-    public void mainMethodRunsSuccessfully() {
-        String[] args = {"-i", "test.txt"} ;
-        MalachiteThousandLeafApplication.main(args);
-        assertEquals("test.txt",ProspectManager.getProspectFile());
-    }
+   @Test
+   public void mainMethodRunsSuccessfully() {
+      String[] args = {"-i", "test.txt", "-w"} ;
+      MalachiteThousandLeafApplication.main(args);
+      assertEquals("test.txt",MalachiteThousandLeafApplication.cmdargs.getOptionValue("i"));
+      assertTrue(MalachiteThousandLeafApplication.cmdargs.hasOption("w"));
+   }
+   @Test
+   public void mainMethodRunsSuccessfullyNoWeb() {
+      String[] args = {"-i", "test.txt"} ;
+      MalachiteThousandLeafApplication.main(args);
+      assertEquals("test.txt",MalachiteThousandLeafApplication.cmdargs.getOptionValue("i"));
+      assertFalse(MalachiteThousandLeafApplication.cmdargs.hasOption("w"));
+   }
 }
