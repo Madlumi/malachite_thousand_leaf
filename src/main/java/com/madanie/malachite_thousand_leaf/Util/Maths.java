@@ -23,8 +23,7 @@ public class Maths {
 
    //drop .00 of doubles
    public static String dropZeroDecimal(double number){
-      return (((number-(int)number) * (number-(int)number)) < .001) ? 
-         String.format("%.0f", number) : 
-         String.format("%.2f", number);
+      return (((number-(int)number) * (number-(int)number)) < .00499*.00499) ? 
+         String.format("%.0f", number) : String.format("%.2f", number);
    }
 }
