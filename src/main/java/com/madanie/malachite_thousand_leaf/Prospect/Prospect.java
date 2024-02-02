@@ -37,7 +37,7 @@ public class Prospect {
       if(interest<=0){ throw new IllegalArgumentException("interest must be > 0"); }
       if(customer==null){ throw new IllegalArgumentException("must have customer"); }
       
-      this.customer = customer;this.totalLoan = totalLoan;this.interest = interest;this.years = years;
+      this.customer = customer; this.totalLoan = totalLoan; this.interest = interest; this.years = years;
    }
 
 /**

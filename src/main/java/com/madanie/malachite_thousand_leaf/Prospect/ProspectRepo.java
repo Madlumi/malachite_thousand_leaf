@@ -23,7 +23,7 @@ public interface ProspectRepo extends CrudRepository<Prospect, Long> {
       for(Map<String, String> m : Csv.readCsv(file)){
          try{
             Prospect p = new Prospect(m);
-            if(p!=null){save(p);}
+            if(p!=null){ save(p); }
          }catch(Exception e){}
       }
    }
