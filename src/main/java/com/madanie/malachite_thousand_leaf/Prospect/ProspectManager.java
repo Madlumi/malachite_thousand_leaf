@@ -19,7 +19,7 @@ public class ProspectManager{
    public int initProspectRepo(ProspectRepo pr){
       if(MalachiteThousandLeafApplication.getCmdargs()==null){ return 1; }
       String file = MalachiteThousandLeafApplication.getCmdargs().getOptionValue("i", "prospects.txt");
-      pr.prospectsFromCsv(file);
+      pr.fromCsv(file);
       pr.printAll();
       return 1;
    }
