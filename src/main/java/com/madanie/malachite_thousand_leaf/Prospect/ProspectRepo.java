@@ -4,6 +4,9 @@ import java.util.Map;
 import org.springframework.data.repository.CrudRepository;
 
 import com.madanie.malachite_thousand_leaf.Util.Csv;
+/**
+ * Interface for managing Prospects
+ */
 public interface ProspectRepo extends CrudRepository<Prospect, Long> {
    default void printAll(){
       StringBuffer buff = new StringBuffer();

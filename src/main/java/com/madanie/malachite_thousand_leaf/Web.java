@@ -36,7 +36,7 @@ public final class Web {
    public String mortagePostCtr(@RequestParam Map<String,String> m, final Model model){ 
       try{
          Prospect p = new Prospect(m);
-         if(p!=null){pr.save(p);}
+         if(p!=null){ pr.save(p); }
       }catch(Exception e){
          return "redirect:/mortage?error=true";
       }
