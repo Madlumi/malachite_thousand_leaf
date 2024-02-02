@@ -8,13 +8,21 @@ import java.util.List;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Csv{
+   private static final Logger logger = LoggerFactory.getLogger(Csv.class);
+
+   /** Reads a CSV file and returns its content as a list of maps, 
+    * with the first row used as keys,
+    * and subsequent rows as values.
+    *
+    * @param file The path to the CSV file.
+    * @return A list of maps representing the CSV content, or an empty list in case of failure. */
    public static List<Map<String, String>> readCsv(final String file){
-      //failure returns empty list. 
       List<Map<String, String>> data = new ArrayList<>();
       try(CSVReader reader = new CSVReader(new FileReader(file))){
-         //assume first line declares data fields
          String[] fields = reader.readNext();
          if(fields == null){ return data; }
 
@@ -27,8 +35,7 @@ public class Csv{
          }
 
       }catch(IOException | CsvValidationException e){
-         System.err.println("CSV Parse error:");
-         e.printStackTrace();
+         logger.error("CSV Parse error:", e);
       }
       return data;
    }

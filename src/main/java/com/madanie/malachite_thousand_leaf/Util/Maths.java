@@ -1,7 +1,10 @@
 package com.madanie.malachite_thousand_leaf.Util;
 
 public class Maths {
-   //Does not handle negative numbers
+
+   /** Raises the given base to the power, 
+    * @param factor cannot be negative
+    * @throws IllegalArgumentException If the factor is negative. */
    public static double pow(final double base, final int factor) throws IllegalArgumentException{
       if(factor<0){throw new IllegalArgumentException("factor must not be negative");}
       double result = 1;
@@ -11,10 +14,17 @@ public class Maths {
       return result;
    }
 
+   /** Calculates a fixed monthly mortage payment ammount
+    *
+    * @param total The total loan amount.
+    * @param yearlyInterest The yearly interest rate in percentages.
+    * @param years The loan duration in years.
+    * @return The calculated monthly mortgage payment.
+    *         If the loan duration is less than or equal to 0, returns the total loan amount. */
    public static double mortagePayment(final double total, final double yearlyintrest, final int years){
       final int MONTHS = 12;
       final int PERCENT = 100;
-      double intr = (yearlyintrest / MONTHS) / PERCENT;    // b = Interest on a monthly basis
+      double intr = (yearlyintrest / MONTHS) / PERCENT;
       int payments= (int)(years * MONTHS);             
       if(payments<=0){return total;}
       if(yearlyintrest==0){return(total/payments);} 
@@ -23,9 +33,10 @@ public class Maths {
       return monthlyPayment;
    }
 
-   //drop .00 of doubles
+   /** Formats a double, rounding to two decimals.
+    * If the decimals round to '.00', the result is instead formatted to zero decimals. */
    public static String dropZeroDecimal(final double number){
-      final Double lowestBeforeZero=.00499;
+      final Double lowestBeforeZero=.00499;//.005 will round to .01, therefore strip at .00499
       return(pow((number-(int)number),2) < pow(lowestBeforeZero,2)) ? 
          String.format("%.0f", number) : String.format("%.2f", number);
    }

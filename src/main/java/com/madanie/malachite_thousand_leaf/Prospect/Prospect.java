@@ -36,14 +36,12 @@ public class Prospect {
       if(years<1){ throw new IllegalArgumentException("years cannot be < 1"); }
       if(interest<=0){ throw new IllegalArgumentException("interest must be > 0"); }
       if(customer==null){ throw new IllegalArgumentException("must have customer"); }
-      
+
       this.customer = customer; this.totalLoan = totalLoan; this.interest = interest; this.years = years;
    }
 
-/**
- *Generate a prospect from a map<String, String>
- *Requred values: "Customer", "Total loan", "Interest", "Years"
- */
+   /** Generate a prospect from a map<String, String>
+    *Requred values: "Customer", "Total loan", "Interest", "Years" */
    public Prospect(final Map<String, String> values) throws IllegalArgumentException, NullPointerException{
       this(
             values.get("Customer"), 
@@ -51,7 +49,7 @@ public class Prospect {
             Double.parseDouble(values.get("Interest")), 
             Integer.parseInt(values.get("Years")));
    }
-   
+
    @Override
    public String toString(){
       return String.format(

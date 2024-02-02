@@ -4,10 +4,11 @@ import java.util.Map;
 import org.springframework.data.repository.CrudRepository;
 
 import com.madanie.malachite_thousand_leaf.Util.Csv;
-/**
- * Interface for managing Prospects
- */
+
+/** Interface for managing Prospects */
 public interface ProspectRepo extends CrudRepository<Prospect, Long> {
+
+   /** prints all prospects in the repository, with '*' separators */
    default void printAll(){
       StringBuffer buff = new StringBuffer();
       final String SEPARATOR=  
@@ -18,6 +19,7 @@ public interface ProspectRepo extends CrudRepository<Prospect, Long> {
       System.out.println(buff.toString());
    }
 
+   /** Populates the repository with prospects from a CSV file. */
    default void fromCsv(final String file){
       if(file==null){return;}
       for(Map<String, String> m : Csv.readCsv(file)){

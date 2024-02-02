@@ -48,11 +48,8 @@ public class MalachiteThousandLeafApplication{
       }
    }
 
-   /**
-    *Initialized the prospect repo with the file provided in args or a default file
-    *then prints all the prospect data
-    */
-
+   /**Initialized the prospect repo with the file provided in args or a default file
+    *then prints all the prospect data */
    @Bean 
    public int initProspectRepo(ProspectRepo pr){
       if(MalachiteThousandLeafApplication.getCmdargs()==null){ return 1; }
