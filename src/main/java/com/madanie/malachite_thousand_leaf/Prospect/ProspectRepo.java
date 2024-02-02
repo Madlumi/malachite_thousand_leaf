@@ -15,7 +15,7 @@ public interface ProspectRepo extends CrudRepository<Prospect, Long> {
       System.out.println(buff.toString());
    }
 
-   default void prospectsFromCsv(final String file){
+   default void fromCsv(final String file){
       if(file==null){return;}
       for(Map<String, String> m : Csv.readCsv(file)){
          try{
