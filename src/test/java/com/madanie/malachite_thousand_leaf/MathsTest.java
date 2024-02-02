@@ -33,7 +33,6 @@ class MathsTest {
 
    @Test
    public void testNegativeExponent(){
-      //Negative exponents return 0 with current implementation
       assertThrows(IllegalArgumentException.class, () -> Maths.pow(5.0, -1));
       assertThrows(IllegalArgumentException.class, () -> Maths.pow(2.0, -3));
    }
@@ -93,5 +92,16 @@ class MathsTest {
       assertEquals("11.01",   Maths.dropZeroDecimal(11.01000000000000001)); 
       assertEquals("11.01",   Maths.dropZeroDecimal(11.01000000000000001)); 
       assertEquals("11.10",   Maths.dropZeroDecimal(11.1000000000000001)); 
+   }
+   @Test
+   public void testDropZeroNeg(){
+      assertEquals("-0",       Maths.dropZeroDecimal(-0.00000000000000001)); 
+      assertEquals("-1",       Maths.dropZeroDecimal(-1.00000000000000001)); 
+      assertEquals("-25",      Maths.dropZeroDecimal(-25.001000000000000)); 
+      assertEquals("-25.01",   Maths.dropZeroDecimal(-25.005000000000000)); 
+      assertEquals("-25",      Maths.dropZeroDecimal(-25.004000000000000)); 
+      assertEquals("-11.01",   Maths.dropZeroDecimal(-11.01000000000000001)); 
+      assertEquals("-11.01",   Maths.dropZeroDecimal(-11.01000000000000001)); 
+      assertEquals("-11.10",   Maths.dropZeroDecimal(-11.1000000000000001)); 
    }
 }

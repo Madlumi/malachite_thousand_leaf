@@ -22,7 +22,8 @@ public class Csv{
     * @return A list of maps representing the CSV content, or an empty list in case of failure. */
    public static List<Map<String, String>> readCsv(final String file){
       List<Map<String, String>> data = new ArrayList<>();
-      try(CSVReader reader = new CSVReader(new FileReader(file))){
+      try{
+         CSVReader reader = new CSVReader(new FileReader(file));
          String[] fields = reader.readNext();
          if(fields == null){ return data; }
 
