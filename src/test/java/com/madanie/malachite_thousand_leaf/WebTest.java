@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.madanie.malachite_thousand_leaf.Prospect.*;
+import com.madanie.malachite_thousand_leaf.prospect.*;
 
 import java.util.Collections;
 @WebMvcTest(Web.class)
@@ -42,7 +42,7 @@ class WebTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/mortage")
                 .param("Customer", "TestCustomer")
                 .param("Total loan", "5000")
-                .param("Interest", "3.5")
+                .param("Interest", "3")
                 .param("Years", "4"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/mortage"));

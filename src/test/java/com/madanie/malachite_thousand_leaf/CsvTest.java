@@ -1,7 +1,7 @@
 package com.madanie.malachite_thousand_leaf;
 import org.junit.jupiter.api.Test;
 
-import com.madanie.malachite_thousand_leaf.Util.Csv;
+import com.madanie.malachite_thousand_leaf.util.Csv;
 
 import static org.junit.jupiter.api.Assertions.*;
 
