@@ -22,8 +22,9 @@ public class Csv{
     * @return A list of maps representing the CSV content, or an empty list in case of failure. */
    public static List<Map<String, String>> readCsv(final String file){
       List<Map<String, String>> data = new ArrayList<>();
+      CSVReader reader = null;
       try{
-         CSVReader reader = new CSVReader(new FileReader(file));
+         reader = new CSVReader(new FileReader(file));
          String[] fields = reader.readNext();
          if(fields == null){ return data; }
 
@@ -34,10 +35,17 @@ public class Csv{
             for(int i = 0; i < fields.length; i++){ row.put(fields[i], line[i]); }
             data.add(row);
          }
-         reader.close();
 
       }catch(IOException | CsvValidationException e){
          logger.error("CSV Parse error:", e);
+      }finally{
+         try {
+            if (reader != null) {
+               reader.close();
+            }
+         } catch (IOException e) {
+            logger.error("Error closing CSVReader:", e);
+         }
       }
       return data;
    }
