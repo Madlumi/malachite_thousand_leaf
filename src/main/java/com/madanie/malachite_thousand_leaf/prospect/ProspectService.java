@@ -6,10 +6,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProspectService {
-  
-   public Iterable<Prospect> findAll();
 
-	void save(Map<String, String> values) throws IllegalArgumentException, NullPointerException ;
+	public Iterable<Prospect> findAll();
+
+	void save(final String customer, final double totalLoan, final double interest, final int years)
+			throws IllegalArgumentException;
+
+	void save(Map<String, String> values) throws IllegalArgumentException, NullPointerException;
 
 	void printAll();
 

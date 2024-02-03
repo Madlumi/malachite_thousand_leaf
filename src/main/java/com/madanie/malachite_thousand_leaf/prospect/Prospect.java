@@ -49,33 +49,12 @@ public class Prospect {
 	protected Prospect() {
 	};
 
-	/**
-	 * Constructs a new Prospect for a mortage
-	 * 
-	 * @param customer  the name of the customer, must not be null.
-	 * @param totalLoan the total amount.
-	 * @param interest  the annual interest as a percentage, must be greater than 0;
-	 * @param years     loan time in years, must be 1 or more.
-	 * @throws IllegalArgumentException if any arg is invalid
-	 */
-	public Prospect(final String customer, final double totalLoan, final double interest, final int years)
-			throws IllegalArgumentException {
-		if (years < 1) {
-			throw new IllegalArgumentException("years cannot be < 1");
-		}
-		if (interest <= 0) {
-			throw new IllegalArgumentException("interest must be > 0");
-		}
-		if (customer == null) {
-			throw new IllegalArgumentException("must have customer");
-		}
-
+	protected Prospect(final String customer, final double totalLoan, final double interest, final int years) {
 		this.customer = customer;
 		this.totalLoan = totalLoan;
 		this.interest = interest;
 		this.years = years;
 	}
-
 
 	@Override
 	public String toString() {
