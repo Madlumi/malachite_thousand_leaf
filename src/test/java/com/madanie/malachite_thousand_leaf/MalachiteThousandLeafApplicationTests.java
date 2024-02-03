@@ -11,6 +11,7 @@ public class MalachiteThousandLeafApplicationTests{
    @Test
    public void contextLoads() {}
 
+   /**check flags work */
    @Test
    public void mainMethodRunsSuccessfully() {
       String[] args = {"-i", "test.txt", "-w"} ;

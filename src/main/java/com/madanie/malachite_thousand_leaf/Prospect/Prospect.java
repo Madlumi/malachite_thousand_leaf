@@ -39,7 +39,7 @@ public class Prospect {
     * @param interest the annual interest as a percentage, must be greater than 0;  
     * @param years loan time in years, must be 1 or more.
     * @throws IllegalArgumentException if any arg is invalid */ 
-   public Prospect( final String customer, final double totalLoan, final double interest, final int years) 
+   public Prospect(final String customer, final double totalLoan, final double interest, final int years) 
          throws IllegalArgumentException{
       if(years<1){ throw new IllegalArgumentException("years cannot be < 1"); }
       if(interest<=0){ throw new IllegalArgumentException("interest must be > 0"); }
@@ -50,10 +50,11 @@ public class Prospect {
 
    /** Parse a map<String, String> into a prospect
     * @param map of: "Customer":"String", "Total loan":"double", "Interest":"double", "Years":"int"
-    * see Prospect( final String customer, final double totalLoan, final double interest, final int years) for validation 
-    * @throws NumberFormatException, IllegalArgumentException, NullPointerException as Appropriate */
-   public Prospect(final Map<String, String> values) throws NumberFormatException, IllegalArgumentException, NullPointerException{
-      this( values.get("Customer"), 
+    * see Prospect(final String customer, final double totalLoan, final double interest, final int years)
+    *    for validation 
+    * @throws IllegalArgumentException, NullPointerException as Appropriate */
+   public Prospect(final Map<String, String> values) throws IllegalArgumentException, NullPointerException{
+      this(values.get("Customer"), 
             Double.parseDouble(values.get("Total loan")),  
             Double.parseDouble(values.get("Interest")), 
             Integer.parseInt(values.get("Years")));
@@ -61,7 +62,7 @@ public class Prospect {
 
    @Override
    public String toString(){
-      return String.format( "Prospect %d: %s wants to borrow %s€ for a period of %s years and pay %s€ each month", 
+      return String.format("Prospect %d: %s wants to borrow %s€ for a period of %s years and pay %s€ each month", 
             getId(), 
             getCustomer(), 
             Maths.dropZeroDecimal(getTotalLoan()), 
