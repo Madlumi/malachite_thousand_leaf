@@ -49,19 +49,4 @@ public class MalachiteThousandLeafApplication {
 			return null;
 		}
 	}
-
-	/**
-	 * Initialized the prospect repo with the file provided in args or a default
-	 * file then prints all the prospect data
-	 */
-	@Bean
-	public int initProspectRepo(ProspectService ps) {
-		if (MalachiteThousandLeafApplication.getCmdargs() == null) {
-			return 1;
-		}
-		String file = getCmdargs().getOptionValue("i", "prospects.txt");
-		ps.fromCsv(file);
-		ps.printAll();
-		return 1;
-	}
 }

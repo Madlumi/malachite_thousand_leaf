@@ -3,8 +3,10 @@ package com.madanie.malachite_thousand_leaf.prospect;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import com.madanie.malachite_thousand_leaf.MalachiteThousandLeafApplication;
 import com.madanie.malachite_thousand_leaf.util.Csv;
 
 @Service
@@ -13,6 +15,21 @@ public class ProspectServiceImpl implements ProspectService {
 	@Autowired
 	private ProspectRepository pr;
 
+	/**
+	 * Initialized the prospect repo with the file provided in args or a default
+	 * file then prints all the prospect data
+	 */
+	@Bean
+	public int initProspectRepo() {
+		if (MalachiteThousandLeafApplication.getCmdargs() == null) {
+			return 1;
+		}
+		String file = MalachiteThousandLeafApplication.getCmdargs().getOptionValue("i", "prospects.txt");
+		fromCsv(file);
+		printAll();
+		return 1;
+	}
+	
 	public Iterable<Prospect> findAll() {
 		return pr.findAll();
 	}
