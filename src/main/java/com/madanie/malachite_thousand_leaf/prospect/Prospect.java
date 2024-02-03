@@ -1,7 +1,5 @@
 package com.madanie.malachite_thousand_leaf.prospect;
 
-import java.util.Map;
-
 import com.madanie.malachite_thousand_leaf.util.Maths;
 
 import jakarta.persistence.Entity;
@@ -78,19 +76,6 @@ public class Prospect {
 		this.years = years;
 	}
 
-	/**
-	 * Parse a map<String, String> into a prospect
-	 * 
-	 * @param map of: "Customer":"String", "Total loan":"double",
-	 *            "Interest":"double", "Years":"int" see Prospect(final String
-	 *            customer, final double totalLoan, final double interest, final int
-	 *            years) for validation
-	 * @throws IllegalArgumentException, NullPointerException as Appropriate
-	 */
-	public Prospect(final Map<String, String> values) throws IllegalArgumentException, NullPointerException {
-		this(values.get("Customer"), Double.parseDouble(values.get("Total loan")),
-				Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
-	}
 
 	@Override
 	public String toString() {

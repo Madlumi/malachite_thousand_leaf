@@ -6,7 +6,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import org.springframework.context.annotation.Bean;
 
-import com.madanie.malachite_thousand_leaf.prospect.ProspectRepo;
+import com.madanie.malachite_thousand_leaf.prospect.ProspectRepository;
+import com.madanie.malachite_thousand_leaf.prospect.ProspectService;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -54,13 +55,13 @@ public class MalachiteThousandLeafApplication {
 	 * file then prints all the prospect data
 	 */
 	@Bean
-	public int initProspectRepo(ProspectRepo pr) {
+	public int initProspectRepo(ProspectService ps) {
 		if (MalachiteThousandLeafApplication.getCmdargs() == null) {
 			return 1;
 		}
 		String file = getCmdargs().getOptionValue("i", "prospects.txt");
-		pr.fromCsv(file);
-		pr.printAll();
+		ps.fromCsv(file);
+		ps.printAll();
 		return 1;
 	}
 }

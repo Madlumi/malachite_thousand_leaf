@@ -11,23 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.madanie.malachite_thousand_leaf.prospect.Prospect;
-import com.madanie.malachite_thousand_leaf.prospect.ProspectRepo;
+import com.madanie.malachite_thousand_leaf.prospect.ProspectService;
 
 @Controller
-public final class Web {
-
-	private final ProspectRepo pr;
+public final class WebController {
 
 	@Autowired
-	public Web(ProspectRepo pr) {
-		this.pr = pr;
-	}
+	private ProspectService ps;
 
 	@GetMapping("/mortage")
 	public String mortageCtr(final Model model) {
 		List<String> pstr = new ArrayList<>();
-		pr.findAll().forEach(p -> {
+		ps.findAll().forEach(p -> {
 			pstr.add(p.toString());
 		});
 		model.addAttribute("prospects", pstr);
@@ -37,10 +32,7 @@ public final class Web {
 	@PostMapping("/mortage")
 	public String mortagePostCtr(@RequestParam Map<String, String> m, final Model model) {
 		try {
-			Prospect p = new Prospect(m);
-			if (p != null) {
-				pr.save(p);
-			}
+			ps.save(m);
 		} catch (Exception e) {
 			return "redirect:/mortage?error=true";
 		}

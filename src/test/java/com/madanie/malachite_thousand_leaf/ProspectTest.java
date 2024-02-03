@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class ProspectManagerTest {
-
 	/** Test valid map into prospect */
+/*
 	@Test
 	void testProspectFromMap() {
 		Map<String, String> testData = Map.of("Customer", "TestCustomer", "Total loan", "5000", "Interest", "3.5",
@@ -30,8 +30,8 @@ class ProspectManagerTest {
 		assertEquals(3.5, p.getInterest(), 000001);
 		assertEquals(4, p.getYears());
 	}
-
 	/** Test invalid map into prospect */
+/*
 	@Test
 	void testProspectFromMapInvalid() {
 		Map<String, String> testData1 = Map.of("Gustomer", "TestCustomer", "Total loan", "5000", "Interest", "3.5",
@@ -47,7 +47,7 @@ class ProspectManagerTest {
 				"Years", "1");
 		assertThrows(NullPointerException.class, () -> new Prospect(testData4));
 	}
-
+*/
 	/** check the prospects return correct monthly */
 	@Test
 	void testCalcPayment() {
