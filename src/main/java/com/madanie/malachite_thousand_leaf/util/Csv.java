@@ -1,4 +1,4 @@
-package com.madanie.malachite_thousand_leaf.Util;
+package com.madanie.malachite_thousand_leaf.util;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -34,6 +34,7 @@ public class Csv{
             for(int i = 0; i < fields.length; i++){ row.put(fields[i], line[i]); }
             data.add(row);
          }
+         reader.close();
 
       }catch(IOException | CsvValidationException e){
          logger.error("CSV Parse error:", e);
