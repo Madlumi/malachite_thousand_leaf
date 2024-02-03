@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CsvTest {
+
+   /** Test the default file and ensure the map is correct*/
     @Test
     void testReadCsv() {
         String filePath = "testfiles/prospects.txt";  
@@ -23,6 +25,8 @@ public class CsvTest {
         assertEquals(expectedData, actualdata);
     }
 
+    /** Test the case of empty file 
+     * @return empty list*/
     @Test
     void testReadCsvEmpty() {
         String filePath = "testfiles/empty.txt";  
@@ -32,6 +36,8 @@ public class CsvTest {
         assertEquals(expectedData, actualdata);
     }
     
+    /** Test Missing file 
+     * @return empty list*/
     @Test
     void testReadCsvNoPath() {
         String filePath = "testfiles/noFileFound.txt"; 
@@ -41,6 +47,8 @@ public class CsvTest {
         assertEquals(expectedData, actualdata);
     }
     
+    /** Test incorect first row. 
+     * @return list with entries mathcing incorect header*/
     @Test
     void testReadCsvInvalidlong() {
         String filePath = "testfiles/invalidHeadLong.txt";  
@@ -52,6 +60,8 @@ public class CsvTest {
         assertEquals(expectedData, actualdata);
     }
 
+    /** Test incorect first row. 
+     * @return list with entries mathcing incorect header(none)*/
     @Test
     void testReadCsvInvalidShort() {
         String filePath = "testfiles/invalidHeadShort.txt";  

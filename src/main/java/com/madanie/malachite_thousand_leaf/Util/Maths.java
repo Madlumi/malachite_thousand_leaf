@@ -6,7 +6,8 @@ public class Maths {
     * @param factor cannot be negative
     * @throws IllegalArgumentException If the factor is negative. */
    public static double pow(final double base, final int factor) throws IllegalArgumentException{
-      if(factor<0){throw new IllegalArgumentException("factor must not be negative");}
+      if(factor<0){ throw new IllegalArgumentException("factor must not be negative"); }
+
       double result = 1;
       for(int i = 0; i<factor; i++){
          result *= base;
@@ -25,13 +26,19 @@ public class Maths {
       final int MONTHS = 12;
       final int PERCENT = 100;
       double intr = (yearlyintrest / MONTHS) / PERCENT;
-      int payments= (int)(years * MONTHS);             
-      if(payments<=0){return total;}
-      if(yearlyintrest==0){return(total/payments);} 
+      int payments = (int)(years * MONTHS);             
+
+      //possibly you want to instead return an illegal argumet exception
+      if(payments<=0){ return total; } 
+
+      //Bypass diveide by 0 eventuality
+      if(yearlyintrest==0){ return(total/payments); } 
+
       //E = U[b(1 + b)^p]/[(1 + b)^p - 1]
       double monthlyPayment = total * (intr*pow((1 + intr),payments)) / (pow((1 + intr),payments)-1);
       return monthlyPayment;
    }
+
 
    /** Formats a double, rounding to two decimals.
     * If the decimals round to '.00', the result is instead formatted to zero decimals. */
