@@ -1,11 +1,12 @@
 package com.madanie.malachite_thousand_leaf;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.madanie.malachite_thousand_leaf.util.Maths;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MathsTest {

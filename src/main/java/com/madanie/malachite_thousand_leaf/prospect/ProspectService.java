@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ProspectService {
 
-	public List<Prospect> findAll();
+	List<Prospect> findAll();
 
-	void save(final String customer, final double totalLoan, final double interest, final int years)
-			throws IllegalArgumentException;
+	void save(String customer, double totalLoan, double interest, int years) throws IllegalArgumentException;
 
 	void save(Map<String, String> values) throws IllegalArgumentException, NullPointerException;
 

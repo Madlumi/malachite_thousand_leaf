@@ -3,7 +3,7 @@ package com.madanie.malachite_thousand_leaf.util;
 public class Maths {
 
 	/**
-	 * Raises the given base to the power,
+	 * Raises the given base to the power.
 	 * 
 	 * @param factor cannot be negative
 	 * @throws IllegalArgumentException If the factor is negative.
@@ -21,7 +21,7 @@ public class Maths {
 	}
 
 	/**
-	 * Calculates a fixed monthly mortage payment ammount
+	 * Calculates a fixed monthly mortgage payment amount.
 	 *
 	 * @param total          The total loan amount.
 	 * @param yearlyInterest The yearly interest rate in percentages.

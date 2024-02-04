@@ -1,14 +1,13 @@
 package com.madanie.malachite_thousand_leaf;
 
-import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class MalachiteThousandLeafApplication {
@@ -18,14 +17,14 @@ public class MalachiteThousandLeafApplication {
 		return cmdargs;
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		cmdargs = getArgs(args);
 		// only start web server if -w/--web flag is set
 		new SpringApplicationBuilder(MalachiteThousandLeafApplication.class)
 				.web(cmdargs.hasOption("w") ? WebApplicationType.SERVLET : WebApplicationType.NONE).run(args);
 	}
 
-	private static CommandLine getArgs(String[] args) {
+	private static CommandLine getArgs(final String[] args) {
 		CommandLineParser parser = new DefaultParser();
 		Options options = new Options();
 		options.addOption("i", "input", true, "Input file(default: prospects.txt)");

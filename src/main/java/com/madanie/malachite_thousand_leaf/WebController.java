@@ -30,11 +30,11 @@ public final class WebController {
 	}
 
 	@PostMapping("/mortage")
-	public String mortagePostCtr(@RequestParam Map<String, String> m, final Model model) {
+	public String mortagePostCtr(@RequestParam final Map<String, String> m, final Model model) {
 		try {
 			ps.save(m);
 		} catch (Exception e) {
-         e.printStackTrace();
+			e.printStackTrace();
 			return "redirect:/mortage?error=true";
 		}
 		return "redirect:/mortage";

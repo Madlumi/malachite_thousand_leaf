@@ -17,8 +17,8 @@ public class ProspectServiceImpl implements ProspectService {
 	private ProspectRepository pr;
 
 	/**
-	 * Initialized the prospect repo with the file provided in args or a default
-	 * file then prints all the prospect data
+	 * Initialized the prospect repository with the file provided in args or a
+	 * default file then prints all the prospect data.
 	 */
 	@Bean
 	public int initProspectRepo() {
@@ -30,13 +30,13 @@ public class ProspectServiceImpl implements ProspectService {
 		printAll();
 		return 1;
 	}
-	
+
 	public List<Prospect> findAll() {
 		return (List<Prospect>) pr.findAll();
 	}
 
 	/**
-	 * Saves a new prospect
+	 * Saves a new prospect.
 	 * 
 	 * @param customer  the name of the customer, must not be null.
 	 * @param totalLoan the total amount.
@@ -59,7 +59,7 @@ public class ProspectServiceImpl implements ProspectService {
 	}
 
 	/**
-	 * Parse a map<String, String> into a prospect and save it
+	 * Parse a map<String, String> into a prospect and save it.
 	 * 
 	 * @param map of: "Customer":"String", "Total loan":"double",
 	 *            "Interest":"double", "Years":"int". see Prospect(final String
@@ -68,7 +68,8 @@ public class ProspectServiceImpl implements ProspectService {
 	 * @throws IllegalArgumentException, NullPointerException as Appropriate
 	 */
 	@Override
-	public void save(Map<String, String> values) throws IllegalArgumentException,NumberFormatException, NullPointerException {
+	public void save(final Map<String, String> values)
+			throws IllegalArgumentException, NumberFormatException, NullPointerException {
 		save(values.get("Customer"), Double.parseDouble(values.get("Total loan")),
 				Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
 
@@ -86,7 +87,7 @@ public class ProspectServiceImpl implements ProspectService {
 	}
 
 	@Override
-	public void fromCsv(String file) {
+	public void fromCsv(final String file) {
 		if (file == null) {
 			return;
 		}
