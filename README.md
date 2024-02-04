@@ -2,6 +2,9 @@
 
 A codetest mortgage calculator made in Java using Spring Boot.
 
+[Hosted on Aws](https://madanie.com)
+
+
 ---
 
 ## How to Use
@@ -30,3 +33,4 @@ Uses an h2 in memory datbase, meaning no persistant memory.
 
 No user verification or login system meaning it's not really suitable for the open web. 
 If that's what you want the static page(/mortagecalculator.html) without db integration would be a more suitable choice.
+
