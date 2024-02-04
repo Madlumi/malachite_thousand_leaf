@@ -5,8 +5,6 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,10 +17,7 @@ public class MalachiteThousandLeafApplication {
 		return cmdargs;
 	}
 
-	private static final Logger LOG = LoggerFactory.getLogger(MalachiteThousandLeafApplication.class);
-
 	public static void main(final String[] args) {
-		LOG.info("Example log from {}", MalachiteThousandLeafApplication.class.getSimpleName());
 		cmdargs = getArgs(args);
 		// only start web server if -w/--web flag is set
 		new SpringApplicationBuilder(MalachiteThousandLeafApplication.class)
