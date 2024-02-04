@@ -8,8 +8,11 @@ A codetest mortgage calculator made in Java using Spring Boot.
 
 ### Run webUi(default port: 8080)
 
->./mvnw spring-boot:run -Dspring-boot.run.arguments="--input prospects.txt -w"
+>./mvnw spring-boot:run -Dspring-boot.run.arguments="--input prospects.txt --web"
 
+### Print out prospects
+
+>./mvnw -q spring-boot:run -Dspring-boot.run.arguments="--input prospects.txt"
 
 ### Run tests:
 
