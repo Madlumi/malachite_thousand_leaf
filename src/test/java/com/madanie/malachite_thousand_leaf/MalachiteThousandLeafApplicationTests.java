@@ -9,9 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class MalachiteThousandLeafApplicationTests {
-	@Test
-	public void contextLoads() {
-	}
 
 	/** check flags work */
 	@Test

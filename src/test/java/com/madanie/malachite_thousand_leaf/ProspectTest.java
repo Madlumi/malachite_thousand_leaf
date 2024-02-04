@@ -20,7 +20,6 @@ import com.madanie.malachite_thousand_leaf.prospect.Prospect;
 import com.madanie.malachite_thousand_leaf.prospect.ProspectService;
 import com.madanie.malachite_thousand_leaf.prospect.ProspectServiceImpl;
 
-//@SpringBootTest
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
 class ProspectManagerTest {

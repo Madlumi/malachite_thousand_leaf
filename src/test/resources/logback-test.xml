@@ -1,0 +1,16 @@
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+  <logger name="com.madanie.malachite_thousand_leaf.WebTest" level="OFF" />
+  <logger name="com.madanie.malachite_thousand_leaf.CsvTest" level="OFF" />
+  <logger name="com.madanie.malachite_thousand_leaf.util.Csv" level="OFF" />
+  <logger name="com.madanie.malachite_thousand_leaf.ProspectManagerTest" level="OFF" />
+</configuration>

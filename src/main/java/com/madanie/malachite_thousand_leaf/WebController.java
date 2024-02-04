@@ -34,7 +34,6 @@ public final class WebController {
 		try {
 			ps.save(m);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return "redirect:/mortage?error=true";
 		}
 		return "redirect:/mortage";
