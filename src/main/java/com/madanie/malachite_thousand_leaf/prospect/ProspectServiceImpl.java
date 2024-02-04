@@ -1,5 +1,6 @@
 package com.madanie.malachite_thousand_leaf.prospect;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class ProspectServiceImpl implements ProspectService {
 		return 1;
 	}
 	
-	public Iterable<Prospect> findAll() {
-		return pr.findAll();
+	public List<Prospect> findAll() {
+		return (List<Prospect>) pr.findAll();
 	}
 
 	/**
@@ -67,7 +68,7 @@ public class ProspectServiceImpl implements ProspectService {
 	 * @throws IllegalArgumentException, NullPointerException as Appropriate
 	 */
 	@Override
-	public void save(Map<String, String> values) throws IllegalArgumentException, NullPointerException {
+	public void save(Map<String, String> values) throws IllegalArgumentException,NumberFormatException, NullPointerException {
 		save(values.get("Customer"), Double.parseDouble(values.get("Total loan")),
 				Double.parseDouble(values.get("Interest")), Integer.parseInt(values.get("Years")));
 

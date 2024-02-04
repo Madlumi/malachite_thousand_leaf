@@ -1,13 +1,14 @@
 package com.madanie.malachite_thousand_leaf.prospect;
 
+import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public interface ProspectService {
 
-	public Iterable<Prospect> findAll();
+	public List<Prospect> findAll();
 
 	void save(final String customer, final double totalLoan, final double interest, final int years)
 			throws IllegalArgumentException;

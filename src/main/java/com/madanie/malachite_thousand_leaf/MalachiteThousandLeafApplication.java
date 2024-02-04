@@ -4,11 +4,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-import org.springframework.context.annotation.Bean;
-
-import com.madanie.malachite_thousand_leaf.prospect.ProspectRepository;
-import com.madanie.malachite_thousand_leaf.prospect.ProspectService;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
