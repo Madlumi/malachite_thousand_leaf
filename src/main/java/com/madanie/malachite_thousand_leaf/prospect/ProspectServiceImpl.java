@@ -27,6 +27,9 @@ public class ProspectServiceImpl implements ProspectService {
 		}
 		String file = MalachiteThousandLeafApplication.getCmdargs().getOptionValue("i", "prospects.txt");
 		fromCsv(file);
+      if (MalachiteThousandLeafApplication.getCmdargs().hasOption("w")) {
+         return 1;
+      }
 		printAll();
 		return 1;
 	}
